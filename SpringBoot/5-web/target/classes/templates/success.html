@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+ <body>
+ th:text:
+ <div th:text="${hello}">hello</div>
+ <br>
+ th:utext:
+ <div th:utext="${hello}">hello</div>
+ <br>
+ 
+ th:each1:
+<!-- th:each每次遍历都会生成这个标签-->
+ <h4 th:each="user:${users}">
+     <tr th:text="${user}"></tr>
+ </h4>
+
+ <br>
+ th:each2:
+ <h4  th:text="${user}" th:each="user:${users}"></h4>
+ <br>
+
+ th:each2:
+ <h4 th:each="user:${users}">
+      <tr >[[${user}]]</tr>
+ </h4>
+ <br>
+ </body>
+
+</html>

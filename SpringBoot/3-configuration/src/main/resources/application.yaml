@@ -1,0 +1,59 @@
+person:
+  name: 张三
+  age: 15
+  isMan: true
+  birth: 2027/7/12
+  maps:
+    bro: 李四
+    wife: 金莲
+    sister: meimei
+  list:
+    - money
+    - gun
+  dog:
+    name: timi
+    age:  2
+
+server:
+  port: 8081
+spring:
+  profiles:
+    active: prod
+---
+server:
+  port: 8082
+spring:
+  profiles: dev
+---
+server:
+  port: 8083
+spring:
+  profiles: prod
+#  public class person {
+#    private String name;
+#    private int age;
+#    private boolean isMan;
+#    private Date birth;
+#    private Map<String,Object> maps;
+#    private List<String> list;
+#    private Dog dog;
+#      public class Dog {
+#      private String name;
+#      private Integer age;
+
+person:
+  name: 张三
+  age: 15
+  isMan: true
+  birth: 2027/7/12
+  maps:
+    bro: 李四
+    wife: 金莲
+    sister: meimei
+  list:
+    - money
+    - gun
+  dog:
+    name: timi
+    age:  2
+
