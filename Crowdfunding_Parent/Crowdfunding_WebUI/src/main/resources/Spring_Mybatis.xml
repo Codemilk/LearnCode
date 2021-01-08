@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:property-placeholder location="classpath:db.properties" ></context:property-placeholder>
+
+    <!--    配置数据库连接池-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="DruidDataSourceFactory">
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+
+    <!--    配置sqlSessionFactory-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sessionFactory">
+<!--        配置数据源-->
+        <property name="dataSource" ref="DruidDataSourceFactory"></property>
+<!--        配置mybaits配置文件-->
+        <property name="configLocation" value="classpath:Mybatis/Mybatis_Config"></property>
+<!--        配置Mapper.xml-->
+        <property name="mapperLocations" value="classpath:Mybatis/Mapper/*.xml"></property>
+<!--    配置plugins-->
+      
+        <property name="plugins" >
+            <array>
+                <bean class="com.github.pagehelper.PageHelper" id="helper">
+                    <property name="properties">
+                        <props>
+                           <!--配置数据库方言-->
+                            <prop key="dialect">mysql</prop>
+<!--                           配置页面合理化修正，在1~末页的修正，合理化修正就是，
+                               当前页面一共30页 你访问第五十页，自动跳转到30页
+  -->
+                            <prop key="reasonable">true</prop>
+                        </props>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+<!--配置批量操作的bean-->
+    <bean class="org.mybatis.spring.SqlSessionTemplate" id="template">
+        <constructor-arg name="sqlSessionFactory" ref="sessionFactory"></constructor-arg>
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+    </bean>
+<!--    配置mapper扫描器，把接口动态代理实现存入IOC-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+         <property name="basePackage" value="Mapper"></property>
+    </bean>
+
+</beans>

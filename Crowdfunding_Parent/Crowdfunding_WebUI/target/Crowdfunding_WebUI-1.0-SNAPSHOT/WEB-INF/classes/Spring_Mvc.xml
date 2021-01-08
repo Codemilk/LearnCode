@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="MVC"></context:component-scan>
+
+<!--    mvc:annotation-driven:相当于打开了@RequestBody，@RequestBody，@ControllerAdvice-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+<!--可以-->
+<!--    <mvc:default-servlet-handler></mvc:default-servlet-handler>-->
+
+<!--    配置视图解析器-->
+
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"></property>
+<!--        保护jsp，将jsp文件放入web-inf下面-->
+         <property name="suffix" value=".jsp"></property>
+    </bean>
+
+<!--配置基于Xml的异常映射-->
+<!--    <bean id="XmlExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+<!--&lt;!&ndash;&lt;!&ndash;        配置异常类型&ndash;&gt;&ndash;&gt;-->
+<!--        <property name="exceptionMappings" >-->
+<!--            <props>-->
+<!--&lt;!&ndash;&lt;!&ndash;                key属性指定异常 标签体写入对应的视图，还去视图解析器那里拼接,不配置注解的异常处理器，这个简单处理器也会出来@requestMaping&ndash;&gt;&ndash;&gt;-->
+<!--                <prop key="exception.AccessForbiddenException">login</prop>-->
+<!--            </props>-->
+<!--        </property>-->
+<!--    </bean>-->
+<!--视图控制器：绕过mvc直接浏览器转发-->
+
+    <mvc:view-controller path="/login.html" view-name="login"></mvc:view-controller>
+    <mvc:view-controller path="/Page.html" view-name="AdminMain"></mvc:view-controller>
+    <mvc:view-controller path="/logout.html" view-name="login"></mvc:view-controller>
+    <mvc:view-controller path="/Register.html" view-name="admin-add"></mvc:view-controller>
+    <mvc:view-controller path="/Roles.html" view-name="role-page"></mvc:view-controller>
+    <mvc:view-controller path="/MenuPage.html" view-name="Menu-Page"></mvc:view-controller>
+    <mvc:view-controller path="/UserTalk.html" view-name="UserTalk"></mvc:view-controller>
+    <!--    配置拦截器-->
+    <mvc:interceptors>
+<!--        拦截所有的路径-->
+<!--        <bean class="MVC.Interceptor.LoginInterceptor" id="loginInterceptor"></bean>-->
+
+<!--        拦截指定路径-->
+        <mvc:interceptor >
+<!--
+            /*对应一层路径，比如：/aaa
+            /**对应多层路径，比如：/aaa/bbb/ccc  /aaa/bbb /aaa/bbb/fff/bbb/....
+-->
+                <mvc:mapping path="/**"/>
+<!--         不会拦截登录的跳转 登入页面,登出：
+             登出尽量不拦截，本身就是为了退出，不用退出而登录
+-->
+            <mvc:exclude-mapping path="/login.html"/>
+            <mvc:exclude-mapping path="/logout.html"/>
+            <mvc:exclude-mapping path="/Admin/logout.html"/>
+            <mvc:exclude-mapping path="/Admin/login.html"/>
+
+            <bean class="MVC.Interceptor.LoginInterceptor" id="loginInterceptor"></bean>
+
+        </mvc:interceptor>
+        </mvc:interceptors>
+        </beans>

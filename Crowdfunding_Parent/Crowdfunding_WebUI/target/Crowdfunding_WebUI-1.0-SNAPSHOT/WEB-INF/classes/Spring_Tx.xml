@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--配置自动扫描包-->
+    <context:component-scan base-package="Service"></context:component-scan>
+
+    <!-- 配置事务管理器-->
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="dataSourceTransactionManager">
+        <!--                装配数据源-->
+        <property name="dataSource" ref="DruidDataSourceFactory"></property>
+    </bean>
+
+    <!--配置事务通知-->
+    <tx:advice transaction-manager="dataSourceTransactionManager" id="transactionInterceptor">
+        <tx:attributes >
+            <!--                指定某个方法上的事务的属性
+                            read-only=true:只读属性，让数据库知道这是一个查询操作，能够进行优化
+             -->
+            <!--                service层,配置只读  -->
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="find*" read-only="true"></tx:method>
+            <tx:method name="query*" read-only="true"></tx:method>
+            <tx:method name="count*" read-only="true"></tx:method>
+
+            <!--            Dao层 增删改，配置事务传播行为，回滚异常
+                             REQUIRED:如果当前没有当前没有事务，那么创建新的事务，如果有了事务就沿用现在事务，缺点就是：指定方法没错，但是在同一事务下的其他犯法错误，则会影响到
+                             REQUIRES_NEW：必须开启新的事务
+                             rollback-for:表示当前那个异常事务回滚
+             -->
+            <tx:method name="save*" propagation="REQUIRES_NEW" rollback-for="java.lang.RuntimeException"></tx:method>
+            <tx:method name="update*" propagation="REQUIRES_NEW" rollback-for="RuntimeException"></tx:method>
+            <tx:method name="remove*" propagation="REQUIRES_NEW" rollback-for="RuntimeException"></tx:method>
+            <tx:method name="batch*" propagation="REQUIRES_NEW" rollback-for="RuntimeException"></tx:method>
+
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <!--这里按顺序表示  *：任意返回值和修饰符 *：任意包 ..：任意包下的任意层次 *service：表示任意方法一service后缀结尾的类  *：任意方法  ..：任意参数      -->
+        <!--  考虑到后面我们整合SpringSecurity，避免把UserService加入事务控制 让切入点定位到Impl结尾的方法-->
+        <aop:pointcut id="TxPoint" expression="execution(* *..*ServiceImpl.*(..))"/>
+
+        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="TxPoint"></aop:advisor>
+    </aop:config>
+
+</beans>
