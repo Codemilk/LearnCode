@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="MyBatis5_cache" />
+        <module name="web_SpringMVC" />
+        <module name="Spring_AOP" />
+        <module name="Spring_officeManagement" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="day24" target="1.7" />
+      <module name="idea、MyBatis4" target="1.7" />
+      <module name="maven-mysql" target="1.7" />
+      <module name="maven_java1" target="1.7" />
+      <module name="maven_web" target="1.7" />
+      <module name="mw" target="1.7" />
+      <module name="MyBatis" target="1.7" />
+      <module name="MyBatis2" target="1.7" />
+      <module name="MyBatis3" target="1.7" />
+      <module name="MyBatis4" target="1.7" />
+      <module name="MyBatis5_cache" target="1.7" />
+      <module name="Spring" target="1.7" />
+      <module name="Spring_AOP" target="1.7" />
+      <module name="Spring_Jdbc" target="1.7" />
+      <module name="Spring_officeManagement" target="1.7" />
+      <module name="SpringMVC_RESTFUL" target="1.7" />
+      <module name="SpringMvcProcess" target="1.7" />
+      <module name="SpringMVCProcess" target="1.7" />
+      <module name="SpringMybatis" target="1.7" />
+      <module name="web_Spring" target="1.7" />
+      <module name="web_SpringMVC" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

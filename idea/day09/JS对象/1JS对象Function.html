@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function</title>
+    <script>
+        /*
+           Function:函数（方法）对象
+                   1.创建：
+                         第一种（最好不要用，因为太不合规矩）： var fun=new Function(形式参数列表，方法体);
+                         第二种：function 方法名称（形式参数列表）{方法体}
+                         第三种：var 方法名 =function （）{}
+                         在一个文件里面出现这种同名函数体的时候，也是重载的，不会报错而是直接覆盖原来的函数体
+                   2.方法：
+
+                   3.属性：
+                          length:代表形参的个数
+                   4.特点：
+                         1.方法的定义时，形参的类型可以不写
+                         2.方法是一个对象，如果定义名称相同的方法体，会覆盖
+                         3.在js中，方法的调用至于方法的名称有关，和参数列表无关
+                         4.在方法声明中又一个隐藏的内置对象（数组）arguments，封装所有的实际参数
+
+                   5.调用：
+                        方法名称（实际参数列表）
+                        调用的时候，即使形参与实参不对应也照样可以访问
+         */
+
+         //1.创建方式1
+       var fun =new Function( "a","b","alert(a)");
+           // fun(3,4);
+       // alert(fun.length);
+        // 创建方式2
+        function fun1( a,  b){
+            alert(a+b);
+        }
+        // fun1(3,4);
+
+         // 创建方式3
+         //  var fun2=function (a,b){
+         //      alert(a+b);
+         //  }
+         //在一个文件里面出现这种同名函数体的时候，也是重载的，不会报错而是直接覆盖原来的函数体
+         // fun2=function (a, b) {
+         //     alert(a-b);
+         // }
+         // fun2(3,4);
+
+
+        var fun2=function (a,b){
+            // alert(a);
+            // alert(b);
+        }
+
+        //在一个文件里面出现这种同名函数体的时候，也是重载的，不会报错而是直接覆盖原来的函数体
+           fun2(3);
+
+        //求两个数的和
+        // function add(a, b) {
+        //     return  a+b;
+        // }
+        // var sum=add(1,2);
+        // alert(sum);
+        //求任意个数的和
+        sum=0;
+        function add(){
+          for (var i=0;i<arguments.length;i++){
+              sum=arguments [i]+sum;
+          }
+        alert(sum) ;
+        }
+        add(1,2,3,4,5,6,);
+
+     </script>
+
+</head>
+<body>
+
+</body>
+</html>

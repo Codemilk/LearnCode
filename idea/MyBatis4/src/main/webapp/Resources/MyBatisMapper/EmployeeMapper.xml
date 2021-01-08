@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="COM.dao.EmployeeMapperDao">
+<!--
+     namespace：名称空间
+     id：唯一标识
+     resultType：返回值类型
+     #{id},从传递过来的参数中取出id值
+-->
+    <select id="getEmpById" resultType="employee" databaseId="mysql">
+        select id,last_name,email,gender from tbl_employee where id = #{id}
+    </select>
+
+<!--    parameterType表示参数类型，一般可以省略
+        mysql支持自增主键，自增主键值的获取，mybatis也是利用statement.getGeneratedKeys
+        useGeneratedKeys="true",使用自增主键获取主键值策略
+        keyProperty="id"：指定对应的主键属性，也就是mybatis获取到主键值以后，把这个值封装给javaBean的那个属性
+-->
+    <insert id="addEmpById" useGeneratedKeys="true" keyProperty="id" databaseId="mysql" parameterType="employee">
+        insert into tbl_employee(last_name,gender,email)
+        values (#{lastname},#{gender},#{email})
+    </insert>
+
+<!--Oracle不支持自增:Oracle使用序列来模拟自增
+           每次插入的数据的之间是从序列中拿到的值:如何获取这个值
+-->
+    <delete id="deleteEmpById" databaseId="mysql" >
+    delete  from tbl_employee where id=#{id}
+
+    </delete>
+
+    <update id="updateEmpById" databaseId="mysql" parameterType="employee">
+          update tbl_employee set last_name=#{lastname},email=#{email},gender=#{gender} where id=#{id}
+    </update>
+
+<!--俩个参数  public Employee getEmpByIdAndLastName(Integer id,String name);
+-->
+    <select resultType="employee" id="getEmpByIdAndLastName" databaseId="mysql">
+        select * from tbl_employee where id=#{id} and last_name=#{lastname}
+     </select>
+
+<!--    参数处理pojo map-->
+    <select id="getEmpByIdAndLastMap" resultType="employee" databaseId="mysql">
+         select * from tbl_employee where id=${id} and last_name=#{lastname}
+    </select>
+
+<!--resultType:如果返回的是一个集合(list,collection)，要写集合元素中的类型-->
+    <select id="getEmpsByLastName" resultType="employee" databaseId="mysql" >
+        select * from tbl_employee where last_name like #{lastname}
+    </select>
+
+<!--    返回值为一条map,MyBatis自动将返回的employee的列名和值封装进map中-->
+    <select id="getEmpByIdReturnMap" resultType="map" >
+                select * from tbl_employee where id=#{id}
+
+    </select>
+<!--   返回多条记录的map：Map<Integer,Employee>:键是这条记录的主键，值是记录封装后的javaBean-->
+    <select id="getEmpsByLastNameReturnMap" resultType="employee" >
+                select * from tbl_employee where last_name like #{lastname}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件的绑定</title>
+<!--     <script>-->
+<!--         function fun() {-->
+<!--             alert("我这小米就是TM香！")-->
+<!--         }-->
+<!--     </script>-->
+</head>
+<body>
+<!--第一种获取元素对象的方法-->
+<!--<img  id="light" src="./img/off.gif" onclick=fun()>-->
+<!--第二种获取元素的方法-->
+<img  id="light" src="../JS对象/案例1/img/off.gif">
+
+<script>
+   var light= document.getElementById("light");
+   light.onclick=fun1;
+   function fun1() {
+       alert("谁TM买小米");
+       alert("我这小米就是TM香！")
+   }
+</script>
+</body>
+</html>

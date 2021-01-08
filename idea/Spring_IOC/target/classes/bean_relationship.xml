@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+<!--    继承关系-->
+    <!--     抽象bean：可以设置abstract为true不可以被获取，一般用作模板-->
+    <bean id="address" class="com.auto_wire.Address"
+     p:city="beijing" p:street="wudaokou" abstract="true"></bean>
+
+
+<!--    bean 配置的继承：使用bean的parent属性来继承某个bean-->
+    <bean id="address2" parent="address" p:street="鞍山道"></bean>
+
+<!--    依赖关系-->
+<!-- 要求在配置person时，必须有一个关联的car，换句话说，person这个bean依赖于Car这个bean-->
+    <bean id="car" class="com.auto_wire.Car" p:brand="dazhong" p:price="666"></bean>
+    <bean id="person" class="com.auto_wire.Person"
+    p:name="TOM" p:address-ref="address2" depends-on="car"></bean>
+</beans>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>黑马用户注册官网</title>
+    <style>
+        *{
+           margin: 0px;
+           padding: 0px;
+            box-sizing: border-box;
+            }
+        body{
+            background: url("./img/register_bg.png");
+        }
+        .rg_layout{
+            margin-top: 30px;
+            background: whitesmoke;
+            width: 900px;
+            height: 500px;
+            border: 8px solid #EEEEEE;
+            margin: auto;
+        }
+        .rg_left{
+            float: left;
+        }
+        .rg_left p1{
+            color: #FFD026;
+           font-size: 20px;
+        }
+        .rg_left p{
+            color: gray;
+        }
+        .rg_right p a{
+            color: pink;
+        }
+        .rg_layout{
+            float: left;
+        }
+        .rg_right{
+            float: right;
+        }
+
+    </style>
+
+
+</head>
+<body>
+<div class="rg_layout">
+    <div class="rg_left">
+        <p1>
+            新用户注册
+        </p1>
+        <p>
+            USER REGISTER
+        </p>
+    </div>
+
+    <div class="rg_center">
+       <div class="rg_form">
+              <form>
+                  <table cellpadding="10" width="50%" align="center" border="2">
+                      <tr>
+                          <td>
+                              用户名
+                          </td>
+                          <td>
+                              <input type="text" placeholder="请输入用户名">
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              密码
+                          </td>
+                          <td>
+                              <input type="password" placeholder="请输入密码">
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              邮箱
+                          </td>
+                          <td>
+                              <input type="email" placeholder="请输入邮箱">
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              姓名
+                          </td>
+                          <td>
+                              <input type="text" placeholder="请输入姓名">
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              性别
+                          </td>
+                          <td>
+                              男  <input type="radio" name="gender" >
+                              女  <input type="radio" name="gender" >
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              出生日期
+                          </td>
+                          <td>
+                              <input type="datetime-local">
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              验证码
+                          </td>
+                          <td>
+                              <input type="text">
+                              <img src="verify_code.jpg">
+                          </td>
+                      </tr>
+                      <tr>
+                          <td colspan="2" align="center">
+                              <input type="submit" value="注册">
+                          </td>
+
+                      </tr>
+                  </table>
+
+              </form>
+       </div>
+    </div>
+
+    <div class="rg_right">
+        <P>
+            已有账号
+        <a href="#" target="_blank">
+            请登录
+        </a>
+        </P>
+    </div>
+
+</div>
+
+</body>
+</html>

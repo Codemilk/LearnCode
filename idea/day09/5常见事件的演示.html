@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>常见事件</title>
+    <script>
+        // window.onload=function dun(){
+        //     document.getElementById("username").onblur;
+        // alert("啊 我失去焦点了");
+        // }
+
+    </script>
+</head>
+<body>
+
+<!--
+ onclick细节：
+ function fun（）{
+       checkform（）；
+ }
+-->
+<form action="#" onclick="return checkform()">
+    <input type="submit" id="submit1">
+    <input name="username" type="text" id="username">
+
+    <select name="city" id="city">
+        <option>--请选择--</option>
+        <option>--北京--</option>
+        <option>--上海--</option>
+        <option>--广州--</option>
+        <option>--西安--</option>
+    </select>
+
+</form>
+
+
+
+<script>
+//1.失去焦点事件
+//     document.getElementById("username").onblur;
+//     alert("啊 我失去焦点了");
+//2.页面或照片加载事件
+//     最上面的<Script>
+//3.绑定鼠标事件
+//     document.getElementById("username").onmouseover=function (ev) {
+//         alert("鼠标来了");
+//     }
+//    document.getElementById("username").onmouseout=function (ev) {
+//     alert("鼠标走了");
+// }
+// document.getElementById("username").onmousedown=function (event) {
+//     alert(event.button);
+// }
+//绑定键盘事件
+// document.getElementById("username").onkeydown=function (ev) {
+//     if(ev.keyCode==13){
+//         alert("提交表单");
+//     };
+// }
+//选中事件
+//     document.getElementById("city").onchange=function (ev) {
+//         alert("gaibianle");
+//     }
+//表单事件
+//     document.getElementById("submit1").onsubmit=function (ev) {
+//         var flag=true;
+//         return flag;
+//     }
+function checkform() {
+
+    return false;
+}
+</script>
+</body>
+</html>

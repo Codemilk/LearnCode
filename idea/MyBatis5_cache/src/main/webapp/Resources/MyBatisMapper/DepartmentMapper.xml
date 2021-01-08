@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="COM.dao.DepartmentMapper">
+
+  <select id="getDeptName" resultType="department">
+      select id,dept_name departmentName from tbl_depart where id=#{id}
+  </select>
+
+    <!--    查询部门的时候对部门对应的所有员工信息也查询出来-->
+
+    <resultMap id="myEmpByStepPlus" type="department">
+
+<!--
+      collection嵌套结果集的方式 定义关联的集合类型的封装类型
+      collection定义关联集合类型的属性的封装规则
+      ofType：指定集合里面的元素类型
+-->
+        <id column="did" property="id"></id>
+        <result column="dn" property="departmentName"></result>
+            <collection property="employees" ofType="employee">
+                <!--定义这个集合中元素的封装规则-->
+                <id column="eid" property="id"></id>
+                <result column="ln" property="lastname"></result>
+                <result column="gender" property="gender"></result>
+            </collection>
+
+    </resultMap>
+
+    <select id="getDeptNamePlus" resultMap="myEmpByStepPlus" >
+    select b.id did,b.dept_name dn,a.id eid,a.last_name ln,a.gender gender
+      from tbl_depart b
+      left join tbl_employee a
+      on b.id=a.id
+      where b.id=#{id}
+    </select>
+
+<!--    collection的分布查询-->
+    <resultMap id="MyDeptByIdStep" type="department">
+           <id column="id" property="id"></id>
+           <result column="dept_name" property="departmentName"></result>
+        <collection property="employees" select="COM.dao.EmployeeMapperPlus.getDeptByIdStep"
+                    column="{xid=id}" fetchType="lazy"
+        >
+
+        </collection>
+    </resultMap>
+
+<!--    当分布查询，需要传入多列的时候
+         将多列的值分装成map传值
+         column="{key1=value1,key1=value1}"
+         注意：key一定要对应#{这里的值} 例如：#{a} key就是a
+         fetchType=lazy：表示使用延迟加载
+         fetchType=eager：表示使用立即加载
+
+-->
+
+
+    <select id="getDeptByIdStep"  resultMap="MyDeptByIdStep">
+        select id  ,dept_name from tbl_depart where id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/maven_java1/mw" />
+    <file type="web" url="file://$PROJECT_DIR$/maven_web" />
+    <file type="web" url="file://$PROJECT_DIR$/MyBatis" />
+    <file type="web" url="file://$PROJECT_DIR$/MyBatis2" />
+    <file type="web" url="file://$PROJECT_DIR$/MyBatis3" />
+    <file type="web" url="file://$PROJECT_DIR$/MyBatis4" />
+    <file type="web" url="file://$PROJECT_DIR$/MyBatis5_cache" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC_RESTFUL" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMvcProcess" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMybatis" />
+    <file type="web" url="file://$PROJECT_DIR$/web_Spring" />
+    <file type="web" url="file://$PROJECT_DIR$/../idea、MyBatis4" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/day24/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_web/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring_day1/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringMVC_RESTFUL/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringMVC/pom.xml" />
+        <option value="$PROJECT_DIR$/MyBatis/pom.xml" />
+        <option value="$PROJECT_DIR$/MyBatis3/pom.xml" />
+        <option value="$PROJECT_DIR$/MyBatis4/pom.xml" />
+        <option value="$PROJECT_DIR$/MyBatis5_cache/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/SpringMvcProcess/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringMybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/day24/pom.xml" />
+        <option value="$PROJECT_DIR$/maven-mysql/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_java1/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_web/pom.xml" />
+        <option value="$PROJECT_DIR$/../idea、MyBatis4/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

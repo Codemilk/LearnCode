@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+<!--     配置bean：-->
+<!--             class：bean的全类名，通过反射的方式在ICO容器中创建Bean，所以要求Bean中必须有无参数的构造器-->
+<!--             id：标识容器中的bean，id唯一-->
+<!--     属性注入-->
+    <bean id="app" class="com.learn.App">
+        <property name="name" value="Spring"></property>
+    </bean>
+
+<!--    构造器注入-->
+<!--    <bean id="car1" class="com.learn.Collection.CAR">-->
+
+<!--        <constructor-arg value="Audi" index="0">     </constructor-arg>-->
+<!--        <constructor-arg value="ShangHai" index="1">     </constructor-arg>-->
+<!--        <constructor-arg value="30000" type="double">     </constructor-arg>-->
+
+<!--    </bean>-->
+
+    <bean id="car1" class="com.learn.CAR">
+        <constructor-arg value="Aud2i" type="java.lang.String" >     </constructor-arg>
+        <constructor-arg value="Sh3angHai" type="java.lang.String" >     </constructor-arg>
+        <constructor-arg  type="int" value="2501"></constructor-arg>
+    </bean>
+
+    <bean id="car2" class="com.learn.Collection.CAR">
+        <constructor-arg value="Aud2i" type="java.lang.String" >     </constructor-arg>
+        <constructor-arg value="Sh3angHai" type="java.lang.String" >     </constructor-arg>
+        <constructor-arg  type="int" value="2501"></constructor-arg>
+    </bean>
+
+    <!--    引用其他bean-->
+<!--属性注入-->
+    <bean id="person" class="com.learn.Person">
+       <property name="name" value="TOM"></property>
+       <property name="age" value="24"></property>
+       <property name="car" ref="car1">
+        <!--通过内部bean来引用其他Bean类-->
+<!--           <bean class="com.learn.Collection.CAR">-->
+<!--               <constructor-arg value="aodi"></constructor-arg>-->
+<!--               <constructor-arg value="yiqi"></constructor-arg>-->
+<!--               <constructor-arg value="55"></constructor-arg>-->
+<!--           </bean>-->
+       </property>
+        <property name="car.maxSpeed" value="555"></property>
+    </bean>
+
+<!--构造器注入-->
+   <bean id="person1" class="com.learn.Person">
+       <constructor-arg value="aodi"></constructor-arg>
+       <constructor-arg value="15"></constructor-arg>
+       <constructor-arg ref="car1"></constructor-arg>
+       <property name="car.maxSpeed" value="695418746"></property>
+   </bean>
+
+<!--测试配置集合属性-->
+  <bean id="person2" class="com.learn.Collection.Person">
+      <property name="name" value="mike"></property>
+      <property name="age" value="43" ></property>
+      <property name="cars" >
+<!--使用list节点，为list类型的属性-->
+          <list >
+              <ref bean="car2"></ref>
+              <ref bean="car2"></ref>
+              <ref bean="car2"></ref>
+          </list>
+      </property>
+<!--使用数组节点 -->
+      <property name="money" >
+          <list>
+              <value>1</value>
+              <value>2</value>
+          </list>
+      </property>
+<!--使用set节点-->
+      <property name="watch">
+          <set>
+              <value>abb</value>
+          </set>
+      </property>
+  </bean>
+
+<!--使用map节点-->
+    <bean id="person3" class="com.learn.Collection.Person2">
+        <property name="name" value="LISI"></property>
+        <property name="age" value="18"></property>
+        <property name="cars">
+            <map>
+                <entry key="Aa" value-ref="car2"></entry>
+            </map>
+        </property>
+    </bean>
+
+<!-- 配置Properties使用properties-->
+    <bean id="datasource" class="com.learn.Collection.DataSource">
+              <property name="properties">
+                  <props>
+                      <prop key="user">root</prop>
+                      <prop key="password">123456</prop>
+                      <prop key="jdbcUrl">jdbc:mysql://127.0.0.1:3306/maven_test</prop>
+                      <prop key="driverClass">mysql.cj.jdbc.Driver</prop>
+                  </props>
+              </property>
+    </bean>
+<!--    配置单例的集合bean，一共多个bean进行引用,要导入util命名空间-->
+
+    <util:list  id="cars">
+        <ref bean="car2"></ref>
+        <ref bean="car2"></ref>
+    </util:list>
+
+
+    <bean id="person4" class="com.learn.Collection.Person">
+        <property name="name" value="lisi1"></property>
+        <property name="cars" ref="cars"></property>
+    </bean>
+
+<!--通过p的命名空间为bean属性赋值，需要先导入p命名空间-->
+    <bean id="person5" class="com.learn.Collection.Person"  p:name="dd" p:cars-ref="car2"></bean>
+ </beans>

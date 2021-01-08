@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/aop
+                            http://www.springframework.org/schema/aop/spring-aop-4.3.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:property-placeholder location="db.properties"></context:property-placeholder>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+        <property name="initialSize" value="${initialSize}"></property>
+        <property name="maxActive" value="${maxActive}"></property>
+        <property name="maxWait" value="${maxWait}"></property>
+        <property name="minIdle" value="${minIdle}"></property>
+        <property name="validationQuery" value="${validationQuery}"></property>
+        <property name="testWhileIdle" value="${testWhileIdle}"></property>
+        <property name="testOnBorrow" value="${testOnBorrow}"></property>
+        <property name="testOnReturn" value="${testOnReturn}"></property>
+    </bean>
+
+    <bean id="JdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <bean class="com_Xml.dao.Service.impl.BookShopDaoImpl" id="bookShopDao">
+        <property name="jdbcTemplate" ref="JdbcTemplate"></property>
+    </bean>
+
+
+    <bean class="com_Xml.dao.Service.impl.BookShopServiceImpl" id="bookShopService">
+       <property name="bookShopDao" ref="bookShopDao"></property>
+    </bean>
+
+    <bean id="cashier" class="com_Xml.dao.Service.impl.CashierImpl">
+        <property name="bookShopService" ref="bookShopService"></property>
+    </bean>
+<!--    配置事务管理器-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+<!--配置事务属性-->
+    <tx:advice id="txAdvice" transaction-manager="dataSourceTransactionManager">
+        <tx:attributes>
+            <tx:method name="purchase" propagation="REQUIRES_NEW" />
+            <tx:method name="get*" read-only="true"></tx:method>
+            <tx:method name="find" read-only="true"></tx:method>
+        </tx:attributes>
+    </tx:advice>
+<!--    配置事务切入点，以及把事务切入点关联和事务属性关联起来-->
+    <aop:config>
+<!--        execution(* com_Xml.dao.Service.*.*(..)):表示Service所有接口的所有方法-->
+        <aop:pointcut id="txPointCut" expression="execution(* com_Xml.dao.Service.*.*(..))"/>
+
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"></aop:advisor>
+
+    </aop:config>
+
+</beans>

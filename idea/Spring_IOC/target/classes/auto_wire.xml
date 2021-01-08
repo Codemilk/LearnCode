@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="address" class="com.auto_wire.Address">
+         <property name="city" value="BeiJing"></property>
+        <property name="street" value="huilongguna"></property>
+    </bean>
+
+    <bean id="car" class="com.auto_wire.Car">
+        <property name="brand" value="Audi"></property>
+        <property name="price" value="666"></property>
+    </bean>
+<!--  可以视同autowire 属性指定自动装配：byName 根据当前Bean的id的setter风格的属性名自动装配，如果也有匹配的，则成功；若没有，则不装配
+                                       byType 根据bean的class和当前bean的类型进行装配，但是当出现两个或多个同类型的bean，会异常
+                 自动装配的缺点：1.在Bean配置文件里设置autowire属性进行自动装配将会装配Bean的所有属性，然而，若希望装配个别属性时，autowire属性就不够灵活
+                                2.autowire的属性值，只能是一个。
+                                3.一般我们选择手动，因为大部分情况省事的好处不如，明确配置的行文流水更让人信服.
+ -->
+    <bean id="person" class="com.auto_wire.Person" p:name="Tom" autowire="byType"></bean>
+
+</beans>

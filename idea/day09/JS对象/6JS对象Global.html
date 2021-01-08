@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global</title>
+    <script>
+     /*
+      Global:
+            1.特点:
+                 全局对象,这个Global中封装的方法不需要对象就可以直接调用。方法名();
+			2.方法：
+               1.编码：(中文转化为%xx的形式)
+                 encodeURI():编码url
+                 decodeURI():解码url。
+
+                 encodeURIComponent():编码url，编码的字符更多
+                 decodeURIComponent():解码url
+                 补充：1个字节->两个二进制编码
+                 utf-8：一个中文 3个%xx；
+                 gbk：一个中文 2个%xx；
+               2.parseInt():将字符串转为数字,比类型自动转换更强！！！
+                            逐一判断每一个字符是否是数字，知道不是数字为止，将前边的数字部分转为number
+               3.isNaN():判断一个值是否是NaN,只能用这个方法来判断或者使用typeof（），
+                         因为这个狗东西六亲不认，无法通过比较(不管和谁比较全是发false)来判断是否是NaN
+               4.eval():将javascript字符串，将它作为脚本来执行
+*/   //1.编码：(中文转化为%xx的形式)
+     //encodeURI和 decodeURI()
+     var str="http://www.baidu.com?wd=传智播客";
+     var encode =encodeURI(str ) ;
+     document.write(encode+"<br>" );
+     var decode=decodeURI( encode);
+     document.write(decode +"<br>");
+
+     //encodeURIComponent和decodeURIComponent
+     var str1="http://www.baidu.com?wd=传智播客";
+     var encode1 =encodeURIComponent(str1);
+     document.write(encode1+"<br>" );
+     var decode1=decodeURIComponent( encode1);
+     document.write(decode1 +"<br>");
+
+     //2.parseInt():将字符串转为数字
+    var str3="123abc";
+    var number=parseInt(str3);
+    document.write(number+"<BR>");
+
+    //3.isNaN:判断一个值是否是NaN
+    var str2=NaN;
+    document.write((str2==NaN)+"<br>");
+    document.write(isNaN(str2)+"<br>");
+
+    // 4.eval():将javascript字符串，将它作为脚本来执行
+    var jscode="alert(123)";
+    eval(jscode);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

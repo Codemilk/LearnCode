@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单标签</title>
+</head>
+<body>
+<!--表单标签 form:可以定义一个范围，范围代表采集用户数据的范围
+             属性： 1.action：提交数据的URL。
+                    2.method:指定提交方式。
+                          分类：一共七个，两个比较常用
+                              get：
+                              post：
+             表单中的数据要想被提交，必须指定name属性
+    -->
+<form action="#" method="get">
+用户名：<input name="username" type="text"  placeholder="清水用户名"> <br>
+密码： <input name="password" type="password " value="请输入"> <br>
+性别： <input type="radio" name="gender" value="man" checked="checked">男
+       <input type="radio" name="gender" value="women" >女<br>
+爱好：<input type="checkbox" name="ho bby" values="smoke"> 抽烟
+      <input type="checkbox" name="hobby" value="drink" checked> 喝酒
+      <input type="checkbox" name="hobby" value="fire hair"> 烫头<br>
+图片上传文件格式<input type="file" name="file"  ><br>
+隐藏域:<input type="hidden"  name="aaa"  value="bbb" >
+提交：<input type="submit" value="提交">
+一个按钮：<input type="button" value="一个按钮">
+图片按钮：<input type="image" src="../day07/image/ImageSource/-154eedd54657bb2.jpg"><br>
+取色器：<input type="color"> <br>
+日期：<input type="date" name="birthday"> <br>
+日期：<input type="datetime-local" name="birthday"> <br>
+邮箱：<input type="email"> <br>
+数字：<input type="number"> <br>
+
+    <!--下拉列表    -->
+省份<select name="province">
+    <option>--请选择--</option>
+    <option>--天津--</option>
+    <option>--北京--</option>
+    <option>--上海--</option>
+    <option>--广州--</option>
+</select><br>
+<!--文本域    -->
+自我描述<textarea cols="70%" rows="60%"></textarea>
+    <input type="submit" value="提交"><br>
+
+ </form>
+</body>
+</html>

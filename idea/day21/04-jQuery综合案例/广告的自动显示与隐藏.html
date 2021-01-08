@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>广告的自动显示与隐藏</title>
+    <style>
+        #content{width:100%;height:500px;background:#999}
+    </style>
+
+    <!--引入jquery-->
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+        //页面加载3s后，自动显示广告
+        //广告显示5s后，自动消失
+
+        // setTimeout() 执行一次定时器
+        //  setInterval() 循环执行
+        $(function () {
+           setInterval(aShow,3000);
+            setInterval(aHide,8000);
+
+        })
+
+        function aShow() {
+            $("#ad").show("slow");
+        }
+
+
+        function aHide() {
+            $("#ad").hide("slow");
+        }
+    </script>
+</head>
+<body>
+<!-- 整体的DIV -->
+<div>
+    <!-- 广告DIV -->
+    <div id="ad" style="display: none;">
+        <img style="width:100%" src="../img/adv.jpg" />
+    </div>
+
+    <!-- 下方正文部分 -->
+    <div id="content">
+        正文部分
+    </div>
+</div>
+</body>
+</html>

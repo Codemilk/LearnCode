@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例2</title>
+</head>
+<style>
+    span{
+        color: red;
+        margin: auto;
+    }
+</style>
+<body>
+
+
+<p>
+    <span id="count">5</span>秒之后，自动跳转。
+</p>
+
+
+<script>
+
+     var count =document.getElementById("count");
+      var c=4;
+      setInterval(fun,1000);
+
+     function fun() {
+
+         count.innerHTML=c;
+         c--;
+        if(c==0){
+            location.href="http://www.baidu.com";
+
+        }
+     }
+
+</script>
+</body>
+</html>

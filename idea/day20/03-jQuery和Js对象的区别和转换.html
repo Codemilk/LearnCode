@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速入门</title>
+</head>
+<script src="js/jquery-3.3.1.min.js"></script>
+<body>
+
+    <div id="div1" >div1</div>
+
+    <div id="div2" >div2</div>
+
+
+<script>
+
+    //1.通过js的方式来获取名称叫div的所有html元素对象
+        var elementsByTagName = document.getElementsByTagName("div");
+        alert(elementsByTagName);
+        alert(elementsByTagName.length);//可以当做数组使用
+        // js方式改变所有的div的标签内容
+        for(var i=0;i<elementsByTagName.length;i++){
+            elementsByTagName [i].innerHTML="aaa";
+        }
+
+        //js转换为jq对象
+        //     $(elementsByTagName).html("ccc");
+
+    //2.通过jq的方式获取标签名字为div的html元素对象
+        var els=$("div");
+        alert(els)
+        alert(els.length)//也可以当做数组使用
+        //jq方式改变所有的div的标签内容
+        els.html("bbb");
+
+        //jq转换为js对象
+           els [0].innerHTML="ggg";
+           els.get(1).innerHTML="xxxx ";
+
+
+
+    //jq更方便，且方法是不通用的jq调用js的方法是不行的
+// 相当于js被一个空对象调用了，相当于fp要转华纳
+    /*
+       1.jQuery对象在操作时，更加方便
+       2.jQuery对象和js对象方法不通用
+       3.两者相互转换
+            1.js->jq: $(js创建的对象)
+            2.jq->js: jq对象[索引]
+
+
+     */
+</script>
+</body>
+</html>

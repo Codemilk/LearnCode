@@ -1,0 +1,94 @@
+package Mytest;
+
+import java.text.Format;
+import java.util.Date;
+
+/*对应emo表的数据，将其封装*/
+public class emp {
+       private  int id;
+       private String ename;
+       private int job_id;
+       private int mgr;
+       private Date joindate;
+       private double salsary;
+       private double bounds;
+       private int dept_id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEname() {
+        return ename;
+    }
+
+    public void setEname(String ename) {
+        this.ename = ename;
+    }
+
+    public int getJob_id() {
+        return job_id;
+    }
+
+    public void setJob_id(int job_id) {
+        this.job_id = job_id;
+    }
+
+    public int getMgr() {
+        return mgr;
+    }
+
+    public void setMgr(int mgr) {
+        this.mgr = mgr;
+    }
+
+    public Date getJoindate() {
+        return joindate;
+    }
+
+    public void setJoindate(Date joindate) {
+        this.joindate = joindate;
+    }
+
+    public double getSalsary() {
+        return salsary;
+    }
+
+    public void setSalsary(double salsary) {
+        this.salsary = salsary;
+    }
+
+    public double getBounds() {
+        return bounds;
+    }
+
+    public void setBounds(double bounds) {
+        this.bounds = bounds;
+    }
+
+    public int getDept_id() {
+        return dept_id;
+    }
+
+    public void setDept_id(int dept_id) {
+        this.dept_id = dept_id;
+    }
+
+    @Override
+    public String toString() {
+        return "emp{" +
+                "id=" + id +
+                ", ename='" + ename + '\'' +
+                    ", job_id=" + job_id +
+                ", mgr=" + mgr +
+                ", joindate=" + joindate +
+                ", salsary=" + salsary +
+                ", bounds=" + bounds +
+                ", dept_id=" + dept_id +
+                '}';
+    }
+}

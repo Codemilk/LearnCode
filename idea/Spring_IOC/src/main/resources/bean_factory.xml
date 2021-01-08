@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!--    利用静态工厂方法配置bean，注意不是配置静态工厂方法实例，而是配置bean实例
+        class:指向静态工厂方法的全类名
+        factory—method：指向静态工厂反方的名字
+        constructor：如果工厂方法需要传入参数，使用这个
+
+
+        -->
+
+    <bean id="car1"
+      class="com.bean_factory.StaticBeanConstructor"
+      factory-method="getCar">
+    <constructor-arg value="audi"></constructor-arg>
+    </bean>
+
+
+
+
+
+<!--    通过实例工厂方法配置bean-->
+
+
+    <bean id="carFactory" class="com.bean_factory.InstanceCarFactory"></bean>
+
+
+    <bean id="car2" factory-bean="carFactory" factory-method="getCar">
+        <constructor-arg value="audi"></constructor-arg>
+    </bean>
+
+<!--    使用spring提供的FactoryBean
+              class：FactoryBean的全类名
+              property：配置FactoryBean的属性
+              但是返回的实例确实getobject方法返回的实例
+-->
+
+    <bean id="car" class="com.FactoryBeans.CarFactoryBean">
+        <property name="brand" value="dsdd"></property>
+    </bean>
+</beans>

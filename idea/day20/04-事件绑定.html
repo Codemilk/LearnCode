@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速入门</title>
+</head>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script>
+
+    //1.入口函数(就是js的onload)
+
+     // $(function () {
+     //
+     //     //2.事件绑定
+     //
+     //     //获取b1按钮，给b1添加单击按键
+     //     var b1=$("#b1").click(function () {
+     //         alert("abc");
+     //     });
+     //
+     // })
+
+
+     /*
+
+     window.onload与$(function(){})区别
+             1.window.onload只会调用一次，会覆盖。
+               例如： window.onload=function (ev) {alert("adc");}
+                        window.onload=function (ev){alert("bcd");}
+                        这样的话会覆盖。
+
+      */
+     $(function () {
+
+         $("#div1").css("background-color","red");
+
+         $("#div2").css("backgroundColor","pink");
+
+     })
+</script>
+<body>
+
+    <div id="div1" >div1</div>
+
+    <div id="div2" >div2</div>
+
+   <input type="button" id="b1" value="莫挨老子">
+
+</body>
+</html>

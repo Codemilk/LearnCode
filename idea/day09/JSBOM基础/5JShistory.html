@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+</head>
+<body>
+<input type="button" id="btn" value="获取历史个数">
+<a href="http://www.baidu.com">
+    百度
+</a>
+<input id="forward" type="button">
+<script>
+     var btn=document.getElementById("btn");
+    btn.onclick=function (ev) {
+        alert(history.length);
+    }
+
+     var btn1=document.getElementById("forward");
+     btn1.onclick=function ( ) {
+         history.forward();
+     }
+
+</script>
+</body>
+</html>

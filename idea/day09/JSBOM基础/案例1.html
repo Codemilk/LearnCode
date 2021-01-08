@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例一</title>
+</head>
+<body>
+
+<img  id="img">
+
+
+
+<script>
+      var count=1;
+      function fun() {
+      var img=document.getElementById("img");
+          img.src ="image/banner_"+(count++)+".jpg";
+          if(count>3) count=1;
+      }
+      setInterval(fun,3000);
+</script>
+</body>
+</html>

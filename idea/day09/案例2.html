@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格全选</title>
+    <style>
+        table{
+            border: 1px solid;
+            width: 500px;
+            margin-left: 30%;
+
+        }
+
+        td,th{
+            text-align: center;
+            border: 1px solid;
+        }
+        div{
+            margin-top: 10px;
+            margin-left: 30%;
+        }
+        .out{
+            background: white;
+        }
+        .over{
+            background: pink;
+        }
+    </style>
+    <script>
+
+        //1.在页面加载完后绑定事件
+        window.onload=function (ev) {
+        //2.给全选按钮绑定单机事件
+            document.getElementById("selectAll").onclick=function () {
+        //运用checked的属性，使其被选中
+             var cbs=document.getElementsByName("cb");
+             for(var i=0;i<cbs.length;i++){
+                 cbs [i].checked=true;
+             }
+            }
+
+            //全不选
+            document.getElementById("unSelectAll").onclick=function (ev1) {
+            var cbs=document.getElementsByName("cb");
+                for(var i=0;i<cbs.length;i++) {
+                    cbs [i].checked = false;
+                }
+            }
+
+            //反选
+            document.getElementById("selectRev").onclick=function (ev1) {
+                var cbs=document.getElementsByName("cb");
+                for(var i=0;i<cbs.length;i++){
+                    if(cbs [i].checked==false){
+                        cbs [i].checked=true;
+                    }else{
+                        cbs [i].checked=false;
+                    }
+                }
+            }
+
+            //一个点其他的也都变化
+            document.getElementById("firstcheck").onclick=function (ev1) {
+                var cbs=document.getElementsByName("cb");
+                // alert(this) 就是数组第一位和这个数组对象;
+                for(var i=0;i<cbs.length;i++){
+                        cbs [i].checked=this.checked;
+                }
+            }
+         //移动到对应表格会变色
+         var trs=document.getElementsByTagName("tr")
+
+        for(var n=0;n<trs.length;n++){
+            trs[n].onmouseover=function (ev1) {
+                  this.className="over";
+               }
+            trs[n].onmouseout=function (ev1) {
+                this.className="out";
+
+            }
+        }
+
+
+
+
+        }
+    </script>
+
+
+</head>
+<body>
+
+<table>
+    <caption>学生信息表</caption>
+    <tr>
+        <th><input id="firstcheck" type="checkbox" name="cb"></th>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+
+    <tr>
+        <td><input type="checkbox" name="cb"></td>
+        <td>1</td>
+        <td>令狐冲</td>
+        <td>男</td>
+        <td><a href="javascript:void(0);">删除</a></td>
+    </tr>
+
+    <tr>
+        <td><input type="checkbox" name="cb" ></td>
+        <td>2</td>
+        <td>任我行</td>
+        <td>男</td>
+        <td><a href="javascript:void(0);">删除</a></td>
+    </tr>
+
+    <tr>
+        <td><input type="checkbox"  name="cb"></td>
+        <td>3</td>
+        <td>岳不群</td>
+        <td>?</td>
+        <td><a href="javascript:void(0);">删除</a></td>
+    </tr>
+
+</table>
+<div>
+    <input type="button" id="selectAll" value="全选">
+    <input type="button" id="unSelectAll" value="全不选">
+    <input type="button" id="selectRev" value="反选">
+</div>
+
+</body>
+</html>

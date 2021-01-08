@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+    <script>
+    /*
+       1.创建：1.var reg=new RegExp(正则表达式)
+	          2.var reg=/正则表达式/
+       2.方法：
+     */
+     var reg=new RegExp("^\\w{6,12}$");
+     var reg1=/^\w{6,12}$/
+     alert(reg);
+     alert(reg1);
+       var ussername="zhangsan";
+      flag=reg.test(ussername)
+     if(flag){
+         document.write(ussername);
+     }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

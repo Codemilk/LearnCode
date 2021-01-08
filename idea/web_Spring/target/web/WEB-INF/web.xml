@@ -1,0 +1,32 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+<!--自己配置Spring配置文件的名称和位置-->
+
+<!--<context-param>-->
+<!--  <param-name>contextConfigLocation</param-name>-->
+<!--  <param-value>classpath*:application.xml</param-value>-->
+<!--</context-param>-->
+
+<!--  启动listener-->
+<!--  <listener>-->
+<!--    <listener-class>Com.Listener.SpringServletListener</listener-class>-->
+<!--  </listener>-->
+
+<!--配置Spring提供的更严谨的Listener-->
+
+<context-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>classpath*:application.xml</param-value>
+</context-param>
+<!--启动Spring提供的IOC容器的ServletContextListener-->
+
+<listener>
+  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+</web-app>
+

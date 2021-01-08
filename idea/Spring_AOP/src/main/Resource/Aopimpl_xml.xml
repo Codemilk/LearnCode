@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+<!--配置bean-->
+    <bean id="calculator" class="COM.AOP.Aopimpl_xml.CalculatorImpl"></bean>
+
+<!--配置切面bean-->
+    <bean id="logginggiao"  class="COM.AOP.Aopimpl_xml.logginggiao" ></bean>
+
+    <bean id="vidateAspect" class="COM.AOP.Aopimpl_xml.VidateAspect"></bean>
+
+
+<!--配置aop-->
+    <aop:config >
+        <!--配置切点表达式-->
+        <aop:pointcut id="PointCut" expression="execution(* COM.AOP.Aopimpl_xml.CalculatorImpl.*(int,int))"/>
+
+        <!--配置切面和通知-->
+        <aop:aspect  ref="logginggiao">
+            <aop:before method="beforeMethod" pointcut-ref="PointCut"></aop:before>
+        </aop:aspect>
+
+        <aop:aspect ref="vidateAspect">
+            <aop:after-returning method="vidateAspect" pointcut-ref="PointCut" returning="result"></aop:after-returning>
+        </aop:aspect>
+
+    </aop:config>
+
+</beans>

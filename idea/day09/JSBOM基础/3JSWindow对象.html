@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Window对象</title>
+    <script>
+        /*
+           window:窗口对象
+                 1.创建
+                 2.方法:
+                         1.与弹出框有关的方法:
+                           1.alert():弹出框有关的方法();
+                           2.confirm():显示带有一段消息以及确认按钮和取消按钮的对话框
+                                       如果用户点击确定按钮,则方法返回true
+                                       如果用户点击取消按钮,则方法返回false
+                           3.prompt():显示可以使用户输入的对话框
+                                      返回值:获取用户输入的值
+                        2.与开发关闭有关的方法:
+                           1.open():打开一个新的浏览器窗口
+                           2.close():谁调用关掉谁
+                        3.与定时器有关的方法:
+                             一次性定时器:
+                              setTimeout() 在指定的毫秒数后调用函数或计算表达式
+                                   参数:js代码或者方法对象
+                                       毫秒值
+                                       返回值:会返回一个数字对象
+                              clearTimeout()取消有setTimeout()方法设置的timeout
+                           循环定时器:
+                              setInterval():按照指定的周期(毫秒算)来调用函数或计算表达式
+                                          参数:js代码或者方法对象
+                                            毫秒值
+                              closeIntertval():取消由setInterval()设置的timeout.
+
+
+
+                 3.属性:
+                        1.获取其他BOM对象
+                           history
+                           location
+                           Navigator
+                           Screen
+                        2.获取DOM对象
+
+
+                 4.特点:
+                       window对象不需要创建就可以使用window来使用,window.方法名
+                       window可以省略.方法名()
+
+
+         */
+
+
+        //confirm(确认框)
+        // var flag=  confirm("您确定要退出码")
+        //
+        // if(flag){
+        //    //退出操作
+        //     alert("欢迎再次光临");
+        // }else{
+        //
+        // }
+
+        //输入框
+        // var str=prompt("请输入用户名");
+
+        //打开一个新窗口
+
+    </script>
+</head>
+<body>
+
+ <input id="openbutton" type="button" value="打开新的页面">
+<input id="closebutton" type="button" value="关闭打开的页面">
+
+<script>
+    //打开一个窗口
+      var button=document.getElementById("openbutton");
+      button.onclick=function () {
+         newwindow= open();
+      }
+    // <!--     //关闭一个窗口-->
+
+      var button1=document.getElementById("closebutton");
+      button1.onclick=function () {
+          newwindow.close();
+      }
+      //一次性定时器
+   // var id= setTimeout(fun,3000);
+   //    clearTimeout(id);
+   //  function fun() {
+   //      alert('boom')
+   //  }
+    //循环定时器
+    setInterval(fun,1500);
+   //获取history
+    var h1=window.history;
+    var h2=history;
+    alert(h1);
+
+</script>
+
+</body>
+</html>

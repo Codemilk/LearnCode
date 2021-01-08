@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运算符</title>
+<script>
+    //一元运算符
+    var num=3;
+    a=++num;
+    document.write(a);
+    document.write("<hr>");
+    //注意在js中，如果运算数不是运算符所要求的类型，那么自动类型转换
+    //例如：*String 转number ，按照字面值黄花。如果字面值不是数组，则转为NaN(不是数字的数字)
+    //      *Boolean转number，true转为1，false转为0。
+    //
+
+    var b=+"abc";
+    document.write(typeof (b)+"<br>");
+    document.write( b+1);
+    document.write("<hr>");
+
+    var flag=+true;
+    var flag1=+false;
+    document.write(typeof (flag)+"<br>");
+    document.write(typeof (flag1)+"<br>");
+    document.write(flag+"<br>");
+    document.write(flag1+"<br>");
+
+    document.write("<hr>");
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--
+    1.MyBatis可以使用properties来引入外部properties配置文件的内容
+             属性：
+                 1.resource：引入类路径下的资源
+                 2.url：引入网络路径或者磁盘路径下的资源
+     -->
+    <!--1.使用properties来引入外部文件-->
+    <properties  resource="db.properties"></properties>
+    <!--2.settings包含很多重要的设置项
+        setting：用来设置每一个设置项
+               name：设置项名
+               value：设置项取值
+               mapUnderscoreToCamelCase:开启驼峰命名检测，数据库里的名字是last_name 而你的javabean的属性时lastname
+    -->
+    <settings>
+<!--驼峰命名法-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+<!--设置JdbcType-->
+        <setting name="jdbcTypeForNull" value="NULL"/>
+<!--    延迟加载     -->
+<!--        lazyLoadingEnabled:要什么给什么
+             aggressiveLazyLoading：要一个全都给
+               -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+
+    </settings>
+
+    <!--3.typeAliases：别名处理器，可以为我们java类型起别名    -->
+    <typeAliases>
+        <!--   typeAliases:为某个Java类型起别名
+                           type:指定要起别名的类型全类名，默认别名就是类名小写
+                           alias：指定新的别名
+
+               -->
+
+
+        <!--单一起别名-->
+       <!--<typeAlias type="COM.bean.Employee" alias="emp"></typeAlias>-->
+
+
+        <!--批量起别名:
+              package：可以为某个包下的所有类批量起别名
+              name：指定报名（为当前包以及下面所有的后带包的每一个都器一个默认别名（类名小写））
+              批量起别名的情况下，可以使用@alias()为一个类单独且别名，为了防止类名冲突
+              -->
+
+        <package name="COM.bean"/>
+    </typeAliases>
+<!-- 4.environments环境，mybatis可以配置多种环境,通过default填入字节点environment的id来设置当前的环境
+          environment：配置一个具体的环境信息
+              必须具备的两个子节点：id表示当前环境的唯一标识
+                       transactionManager：事务管理器
+                              type：事务管理器的类型
+                                   在mybatis有两种JDBC和MANAGED
+                                   自定义事务管理器：实现TransactionFactory接口，type指定为全类名
+           DataSource 数据源 ：
+                   type数据源类型：支持UNPOOLED(非连接池)|POOLED(连接池)|JNDI
+                   自定义数据源：实现DataSourceFactory接口，type是全类名
+            -->
+    <environments default="development">
+       <!-- <environment id="test">
+            <transactionManager type=""></transactionManager>
+            <dataSource type=""></dataSource>
+        </environment>-->
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+<!--databaseIdProvider:支持多数据库厂商
+              type="DB_VENDOR" VendorDatabaseIdProvider
+              作用就是得到是数据库厂商的标识，mybatis就能根据数据库厂商标识执行不同sql
+
+-->
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="MySQL" value="mysql"/>
+    </databaseIdProvider>
+<!--将我们写好的sql映射文件一定要注册到全局配置文件中-->
+<!--6.mappers：将sql映射注册到全局配置中-->
+    <mappers>
+
+<!--      mapper：注册一个sql映射
+               resource：引用类路径下的sql映射文件
+               url：引用网路径或磁盘路径下的文件
+               注册接口:
+               class:
+                     1.引用(注册)接口:映射文件必须和接口同名，并且放在与接口同一目录下：
+                     2.没有sql映射文件，所有的sql都是利用注解写在接口上
+                     推荐：比较重要的Dao接口我们来写sql映射文件
+                          不重要的：简单的Dao接口为了开发可以使用快速接口
+-->
+        <mapper  resource="MyBatisMapper/EmployeeMapper.xml"/>
+
+
+<!--        <mapper class="COM.dao.daoMappersAnnotation.EmployeeMapperDaoAnnotation"></mapper>-->
+<!--    批量注册-->
+<!--        <package name="COM.dao"/>-->
+        <mapper resource="MyBatisMapper/EmployeeMapperPlus.xml"></mapper>
+        <mapper resource="MyBatisMapper/DepartmentMapper.xml"></mapper>
+        <mapper resource="MyBatisMapper/EmployeeMapperDynamicSQLMapper.xml"></mapper>
+    </mappers>
+</configuration>

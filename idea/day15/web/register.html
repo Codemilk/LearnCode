@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+    <script>
+       WINDOW.onload=function () {
+           var a= document.getElementsByTagName("a");
+           var img= document.getElementById("code")
+
+           a.onclick=function () {
+               img.href="/day15/checkResponseDemo";
+           }
+           img.onclick=function () {
+               //加时间戳
+               var date=new Date().getTime();
+               //毫秒很快这样可以欺骗服务器，
+               img.src="/day15/checkResponseDemo?"+date;
+           }
+       }
+    </script>
+</head>
+<body>
+
+<img id="code" src="/day15/checkResponseDemo">
+<a href="">看不清给老子换一张</a>
+</body>
+</html>

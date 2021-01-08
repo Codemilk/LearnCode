@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例</title>
+</head>
+<body>
+   <img id="light" src="img/off.gif">
+<script>
+    var light=document.getElementById("light");
+    var a=false;
+     light.onclick=function ( ) {
+        if(a){
+            light.src="img/off.gif";
+
+            a=false;
+        }else{
+
+            light.src="img/on.gif";
+
+            a=true;
+
+        }
+
+   }
+</script>
+</body>
+</html>

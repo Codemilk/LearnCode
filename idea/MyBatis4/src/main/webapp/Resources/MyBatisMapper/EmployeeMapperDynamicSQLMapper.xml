@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="COM.dao.EmployeeMapperDynamicSQL">
+
+<!--
+    if
+    choose(when,otherwise)
+    trim(where,set)
+    foreach
+-->
+<!--1.查询员工，要求：携带哪个字段查询条件就带上那个字段
+    2.test表达判断(OGNL) 和jstl中的 c:if test
+             OGNL具体参照官方文档
+        <if test="id!=null">：这里的test是从参数中来获取获取值的，也就是#{这里的值}
+     3.遇见特殊符号应该去使用转义字符
+
+      查询的时候如果某些条件没带sql拼装会有问题
+    1.给where后面加上1=1，以后的条件都and xx
+    2.mybatis使用where标签来将所有的查询条件包括在内,mybatis的where会将sql语句中的or and删除
+                                               这个where只会去掉第一个where
+
+-->
+   <select  id="getEmpByConditionIf" resultType="employee" >
+       select * from tbl_employee
+       <!--where-->
+       <where>
+            <if test="id!=null">
+                 and  id=#{id}
+            </if>
+
+            <if test="lastname!=null and lastname!=&quot;&quot;">
+                 and last_name like #{lastname}
+            </if>
+
+            <if test="email!=null and email.trim()!=&quot;&quot;">
+                 and email = #{email}
+            </if>
+               <!--  ognl会进行字符串与数字的转换   -->
+            <if test="gender==0 or gender==1">
+                 and gender = #{gender}
+            </if>
+       </where>
+
+   </select>
+<!--
+   当sql语句 后面多出and or的时候 ，where不可以解决
+    Trim（自定义字符串截取）的属性:
+     prefix=""：前缀，trim标签体中是整个字符拼串后的结果
+               prefix给拼串后trim标签体的整个加一个前缀
+     prefixOverrides="" 前缀覆盖，表示去掉整个字符串前面多余的字符
+     suffix="" 后缀 suffix给拼串后trim标签体的整个加一个后缀
+     suffixOverrides="" 后缀覆盖，表示去掉整个字符串前面多余的字符
+
+-->
+    <select id="getEmpByConditionTrim" resultType="employee">
+               select * from tbl_employee
+             <trim prefix="where" prefixOverrides="" suffix="" suffixOverrides="and">
+                <if test="id!=null">
+                    id =#{id} and
+                </if>
+
+                <if test="lastname!=null and lastname!=&quot;&quot;">
+                     last_name like #{lastname} and
+                </if>
+
+                <if test="email!=null and email.trim()!=&quot;&quot;">
+                     email = #{email} and
+                </if>
+
+                <if test="gender==0 or gender==1">
+                     gender = #{gender}
+                </if>
+             </trim>
+    </select>
+<!--    Choose-->
+    <select id="getEmpByConditionChoose" resultType="employee">
+         select * from tbl_employee
+         <where>
+             <!--   如果带了id 查id ...-->
+                <choose>
+                    <when test="id!=null">
+                        id=#{id}
+                    </when>
+
+                    <when test="lastname!=null">
+                        last_name like #{lastname}
+                    </when>
+
+                    <when test="email!=null">
+                        last_name like #{lastname}
+                    </when>
+
+                   <otherwise>
+                       gender=0
+                   </otherwise>
+                </choose>
+         </where>
+    </select>
+<!--    Set:标签的使用-->
+    <update id="updateEmp">
+    update tbl_employee
+<!--   Set:标签的使用-->
+<!--    <set>-->
+<!--        <if test="lastname!=null">-->
+<!--              last_name=#{lastname},-->
+<!--        </if>-->
+
+<!--        <if test="email!=null">-->
+<!--            email=#{email},-->
+<!--        </if>-->
+
+<!--        <if test="gender!=null">-->
+<!--            gender=#{gender},-->
+<!--        </if>-->
+<!--    </set>-->
+
+
+    <!--Trim-->
+    <trim prefix="set" suffixOverrides=",">
+
+        <if test="lastname!=null">
+                      last_name=#{lastname},
+        </if>
+
+        <if test="email!=null">
+                    email=#{email},
+        </if>
+
+        <if test="gender!=null">
+                    gender=#{gender},
+        </if>
+
+    </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+<!--foreach-->
+    <select id="getEmpsByConditionForeach" resultType="employee">
+        select  * from tbl_employee where id in(
+        <!--foreach
+              collection:指定要便利的集合
+                      list类型的参数会特殊处理封装在map中，map的key就叫lsit
+              item：容器遍历出的的元素赋值给指定的变量
+              separator:表示每个元素的分隔符
+              open：遍历出所有结果拼接一个开始的字符
+              close：遍历出所有结果拼接一个结束的字符
+              index： 索引 遍历list的时候是索引
+                           遍历map的时候uindex表示key
+        -->
+        <foreach  collection="list" item="item_id" separator=",">
+            #{item_id}
+        </foreach>
+        )
+    </select>
+<!--批量保存-->
+<!--    方法一-->
+<!--    mysql下批量保存，可以foreach遍历 mysql支持values(),()语法-->
+<!--        <insert id="addEmpsByForeach" >-->
+<!--            insert into tbl_employee (last_name,gender,email,d_id)-->
+<!--            VALUES-->
+<!--            <foreach collection="emps" item="emp"  separator=",">-->
+<!--                (#{emp.lastname},#{emp.gender},#{emp.email},#{emp.dept.id})-->
+<!--            </foreach>-->
+<!--        </insert>-->
+<!--方法二-->
+     <insert id="addEmpsByForeach" >
+         <foreach collection="emps" item="emp"  separator=";">
+            insert into tbl_employee (last_name,gender,email,d_id)
+           VALUES
+            (#{emp.lastname},#{emp.gender},#{emp.email},#{emp.dept.id})
+        </foreach>
+     </insert>
+<!--
+     两个内置参数：
+         不只是方法转递过来的参数可以被用来判断，取值...
+         mybatis默认还有两个那内置参数
+            parameter：代表整个参数
+                     单个参数：_parameter就是这个参数
+                     多个参数：参数会被封装为一个map：_parameter就是代表这个map
+            databaseId:如果配置了DatabaseProvider的标签
+                     那么_databaseId就有值
+-->
+    <select id="getEmpTestPara" resultType="employee">
+        <if test="_databaseId='mysql'">
+            select * from tbl_employee
+           <if test="_parameter!=null"></if>
+             where last_name like #{lastname}
+        </if>
+    </select>
+
+<!--bind(绑定：可以将OGNL表达式的值绑定到一个变量中),方便后来引用这个变量的值-->
+    <select id="getEmpTestBind" resultType="employee">
+        select
+        <!--include标签用来引用外部标签-->
+        <include refid="insertColumn">
+
+        </include>
+        from tbl_employee
+            <if test="_parameter!=null">
+             <bind name="_lastname" value="'%'+lastname+'%'"/>
+                where last_name like #{_lastname}
+            </if>
+
+    </select>
+
+<!--
+   sql标签：
+       抽取可重用的sql片段，方便后面引用
+          1.我们经常使用到这个标签，将要查询的列名，或者插入用的列明抽取出来方便引用
+          2.include来引用已经抽取到的sql
+               可以自定义属性，sql可以在内部适用：用法就是 ${} ，#{}不可以使用
+               例如：
+                       <include refid="insertColumn">
+                            <property name="testColumn" value="depatName"/>
+                       </include>
+
+                       对应的sql标签：
+                        <sql id="insertColumn" >
+                            * ${testColumn}
+                        </sql>
+
+-->
+    <sql id="insertColumn" >
+        *
+    </sql>
+</mapper>

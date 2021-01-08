@@ -1,0 +1,39 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+
+
+  <filter>
+    <filter-name>HiddenHttpMethodFilter</filter-name>
+    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>HiddenHttpMethodFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!--  配置dispatcherServlet的一个初始化参数，作用：配置SpringMVC配置文件的位置和名称-->
+    <!--         实际上也可以不通过contextConfigLocation 来配置SpringMVC的配置文件 而使用默认的
+                默认的配置文件：WEB-INF/<servlet-name>-servlet.xml
+    -->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath*:SpringRESTFUL.xml</param-value>
+    </init-param>
+    <!--        标记了servlet的加载顺序-->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+
+
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>

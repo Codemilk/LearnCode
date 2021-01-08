@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逻辑运算符</title>
+     <script>
+         /*
+            逻辑运算符：
+            &&：与
+            ||：或
+            ！：非
+            其他类型转boolean：
+            1.number ：0为假或者NaN为假，其他为真
+            2.string :出了""空字符串，其他全都为真
+            3.null&&undefined：都是false
+            4.对象：所有对象全是true
+          */
+
+          var falg=3;
+          document.write(!falg+"<br>");
+
+          var obj=null;
+          var obj1;
+          document.write(!obj+"<br>");
+          document.write(!obj1+"<br>");
+
+          var date=new Date();
+          document.write(date+"<br>");
+
+          var str="";
+          if (str){
+              alert("giao");
+          }
+     </script>
+</head>
+<body>
+
+</body>
+</html>
