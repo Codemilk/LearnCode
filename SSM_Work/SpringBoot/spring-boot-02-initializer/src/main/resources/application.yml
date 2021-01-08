@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+
+
+spring:
+  profiles:
+    active: test
+#---是文档分割器
+---
+server:
+  port: 8081
+spring:
+  profiles: dev
+---
+
+server:
+  port: 8082
+spring:
+  profiles: test
+
+
+---
+person:
+#  字面量
+  lastName: yazu
+  age: ${random.int}
+  isPropose: false
+#  从上往下，依次 list map 对象
+  pets: { cat,dog,mouse}
+  PersonMessage: { name: yazu,son: tom}
+#    Son
+#    private String s_name;
+#    private Integer age;
+  son:
+    s_name: ${person.lastName}_dog
+    age: ${person.GroundSon:46}
+spring:
+  profiles:
+    active:

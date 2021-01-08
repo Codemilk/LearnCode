@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--     Spring配置文件，这里主要配置和业务逻辑有关的-->
+    <!--扫描金容器-->
+    <context:component-scan base-package="Rest">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+<!--     数据源，事务控制...-->
+<!--数据源-->
+      <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
+
+      <bean class="com.alibaba.druid.pool.DruidDataSource" id="druidDataSource">
+
+            <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+            <property name="url" value="${jdbc.url}"></property>
+            <property name="username" value="${jdbc.username}"></property>
+            <property name="password" value="${jdbc.password}"></property>
+            <property name="initialSize" value="${initialSize}"></property>
+            <property name="maxActive" value="${maxActive}"></property>
+            <property name="maxWait" value="${maxWait}"></property>
+            <property name="minIdle" value="${minIdle}"></property>
+            <property name="validationQuery" value="${validationQuery}"></property>
+            <property name="testWhileIdle" value="${testWhileIdle}"></property>
+            <property name="testOnBorrow" value="${testOnBorrow}"></property>
+            <property name="testOnReturn" value="${testOnReturn}"></property>
+
+      </bean>
+
+<!--  Mybatis提供给Spring配置Mybatis的整合的
+      这个就是mybatis
+-->
+      <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--          全局配置文件-->
+          <property name="configLocation" value="classpath:MyBatisConfig.xml"></property>
+<!--       指定数据源   -->
+          <property name="dataSource" ref="druidDataSource"></property>
+    <!--指定mapper文件-->
+          <property name="mapperLocations" value="classpath:Mapper/*.xml"></property>
+
+      </bean>
+
+<!--    配置一个可以批量增加的sqlSession
+                   说白了也就是让一个sqlSession可以被被多个dao调用，也保持线程安全
+-->
+    <bean class="org.mybatis.spring.SqlSessionTemplate" id="sessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sessionFactory"></constructor-arg>
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+    </bean>
+
+<!--    配置扫描器，将我们的mybatis接口的实现的实体类放入IOC容器-->
+      <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!--           扫描所有的dao接口的实现,加入到IOC容器中-->
+          <property name="basePackage" value="Rest.IOC.dao"></property>
+      </bean>
+
+<!--配置事务管理器-->
+      <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="dataSourceTransactionManager">
+<!--   控制好数据源-->
+          <property name="dataSource" ref="druidDataSource"></property>
+      </bean>
+
+<!--启动事务管理器，开启支持基于注解的事务 ，一般使用xml配置-->
+<!--    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"></tx:annotation-driven>-->
+
+     <aop:config>
+<!--         配置切入点-->
+<!--        * Rest.IOC.dao.*.*.*(..):表示 返回值类型 类路径 方法（参数（..表示：任意参数）） -->
+          <aop:pointcut id="txAdvice" expression="execution(* Rest.IOC.dao.*.*.*(..))"/>
+<!--      启动事务管理器,表示事务增强后，切入到dao这个切面的所有方法-->
+          <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="txAdvice"></aop:advisor>
+     </aop:config>
+
+    <!--配置事务增强，事务如何切入-->
+    <tx:advice id="transactionInterceptor" transaction-manager="dataSourceTransactionManager">
+        <tx:attributes>
+<!--            表示所有方法都是事务-->
+            <tx:method name="*"/>
+<!--            表示get开始的所有方法 read-only表示只可以读-->
+            <tx:method name="get*" read-only="true"/>
+
+        </tx:attributes>
+    </tx:advice>
+
+
+</beans>

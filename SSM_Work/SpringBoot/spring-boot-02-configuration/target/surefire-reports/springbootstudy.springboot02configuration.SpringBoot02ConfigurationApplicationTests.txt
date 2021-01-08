@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: springbootstudy.springboot02configuration.SpringBoot02ConfigurationApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.657 s - in springbootstudy.springboot02configuration.SpringBoot02ConfigurationApplicationTests

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+<!--日志级别以及优先级排序:OFF>FATAL>ERROR>WARN>INFO>DEBUG>TRACE>ALL
+     越靠右显示越多
+-->
+    <Appenders>
+<!--先定义所有的appender-->
+<!--            表示输出到控制台-->
+        <Console name="Console" target="SYSTEM_OUT">
+<!--             控制输出格式-->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+<!--然后定义logger，还有定义了logger并引入appender，appender才生效-->
+<!--root：用于指定项目的根目录，如果没有单独指定Logger，则会使用root作为默认的日志输出-->
+    <Loggers>
+<!--        <Logger name="com.foo.Bar" level="trace">-->
+<!--            <AppenderRef ref="Console"/>-->
+<!--        </Logger>-->
+        <Root level="DEBUG">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

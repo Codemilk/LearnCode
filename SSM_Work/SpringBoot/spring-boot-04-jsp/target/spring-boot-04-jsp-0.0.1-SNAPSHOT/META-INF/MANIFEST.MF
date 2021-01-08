@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: lenovo
+Build-Jdk: 1.8.0_191
+Implementation-Title: spring-boot-04-jsp
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: spring-boot-04-jsp
+Main-Class: ${start-class}
+

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="CrowedFunding:war">
+    <output-path>$PROJECT_DIR$/CrowedFunding/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>CrowedFunding</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="CrowedFunding.war">
+      <element id="artifact" artifact-name="CrowedFunding:war exploded" />
+    </root>
+  </artifact>
+</component>

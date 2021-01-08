@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Mapper.Dynamic_SQL">
+
+    <select id="getEmpByConditionIf" parameterType="employee" resultType="employee">
+        select * from tbl_employee
+        <where>
+                <if test="id!=null">
+                and id=#{id}
+                </if>
+
+                <if test="lastname!=null">
+                and last_name like #{lastname}
+                </if>
+
+                <if test="email!=null">
+                and email=#{email}
+                </if>
+
+                <if test="gender==0 or gender==1">
+                and gender=#{gender}
+                </if>
+        </where>
+    </select>
+<!--Trim
+    where 只能解决第一个多出来的and
+    Trim:
+          prefix:"前缀" ,在Trim标签体下的语句前加上一个前缀
+          prefixOverride：前缀覆盖 去掉整个字符串前面多余的字符
+          suffix："后缀"，在Trim标签体下的语句后加上后缀
+          suffixOverride：后缀覆盖 去掉整个字符串后多余的字符
+-->
+    <select id="getEmpByConditionTrim" parameterType="employee" resultType="employee">
+        select * from tbl_employee
+         <trim prefix="where" suffixOverrides="and">
+            <if test="id!=null">
+                id=#{id} and
+            </if>
+
+            <if test="lastname!=null">
+               last_name like #{lastname}  and
+            </if>
+
+            <if test="email!=null">
+              email=#{email}   and
+            </if>
+
+            <if test="gender==0 or gender==1">
+              gender=#{gender}
+            </if>
+         </trim>
+    </select>
+
+    <select id="getEmpByConditionChoose" resultType="employee">
+        select * from tbl_employee
+        <where>
+            <!-- 带了谁用谁查找-->
+              <choose>
+                  <when test="id!=null">
+                      id=#{id}
+                  </when >
+                  <when test="lastname!=null">
+                      last_name like #{lastname}
+                  </when>
+                  <when test="email!=null">
+                      email=#{email}
+                  </when>
+                  <otherwise>
+                         gender=0
+                  </otherwise>
+              </choose>
+        </where>
+    </select>
+
+    <update id="updateEmployee">
+        update tbl_employee
+        <!--
+                    <set>
+                        <if test="lastname!=null">
+                        last_name=#{lastname},
+                        </if>
+                        <if test="email!=null">
+                        email=#{email},
+                        </if>
+                        <if test="gender!=null">
+                        gender=#{gender},
+                        </if>
+                   </set>
+                <where>
+                id=#{id}
+                </where>
+         -->
+        <trim prefix="set" suffixOverrides=",">
+
+                <if test="lastname!=null">
+                    last_name=#{lastname},
+                </if>
+
+                <if test="email!=null">
+                    email=#{email},
+                </if>
+
+                <if test="gender!=null">
+                    gender=#{gender},
+                </if>
+
+        </trim>
+            <where>
+        id=#{id}
+    </where>
+            </update>
+<!--foreach_collection-->
+    <select id="getEmpByConditionForeach" resultType="employee">
+         select * from tbl_employee where id in
+
+         <foreach collection="list" item="item" separator="," open="(" close=")" >
+             #{item}
+         </foreach>
+     </select>
+<!--foreachMap-->
+    <select id="getEmpByConditionForeachMap" resultType="employee">
+        select * from tbl_employee where id in
+        <foreach collection="map" item="item" separator="," open="(" close=")" index="key">
+            #{map.key}
+        </foreach>
+    </select>
+
+    <insert id="insertEmployeeForeach">
+        insert into tbl_employee
+        (last_name,email,gender,d_id)
+        values
+        <foreach collection="list"  separator="," item="emp" >
+           ( #{emp.lastname},#{emp.email},#{emp.gender},#{emp.d_id.id})
+        </foreach>
+    </insert>
+<!--    内置参数：
+                _parameter:代表整个参数
+                           单个参数：_parameter就是这个参数
+                           多个参数：参数会被封装为一个map，_parameter就是这个参数
+                _databaseId
+
+
+        -->
+    <select id="getEmployeeByInnerParam" resultType="employee">
+        <if test="_databaseId=='mysql'">
+            <if test="_parameter!=null">
+        select  * from tbl_employee where id=#{_parameter.param1} and last_name like #{_parameter.param2}
+            </if>
+        </if>
+    </select>
+<!--bind：可以将OGNL表达式的值绑定到一个变量中，方便后来引用这个变量的值-->
+    <select id="getEmployeeByBind" resultType="employee" parameterType="string">
+        <bind name="_lastname" value="'%'+param1+'%'"></bind>
+
+        select  * from tbl_employee where last_name like #{_lastname}
+    </select>
+<!--    重用sql-->
+    <sql id="template">
+        id,last_name,email
+    </sql>
+
+    <select id="getEmployeeByRepeatSql" databaseId="mysql" parameterType="integer" resultType="employee">
+        select
+          <include refid="template" ></include>
+        from tbl_employee where id=#{id}
+    </select>
+</mapper>

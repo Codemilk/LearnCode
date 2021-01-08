@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="CrowedFunding_WebUi:war">
+    <output-path>$PROJECT_DIR$/CrowedFunding_WebUi/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>CrowedFunding_WebUi</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="CrowedFunding_WebUi.war">
+      <element id="artifact" artifact-name="CrowedFunding_WebUi:war exploded" />
+    </root>
+  </artifact>
+</component>

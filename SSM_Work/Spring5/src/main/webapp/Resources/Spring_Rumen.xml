@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="SpringUser"  class="IOC.Bean.Bean.User">
+<!--构造器-->
+        <constructor-arg value="hehe"></constructor-arg>
+<!--通过setter方法给参数传值-->
+        <property name="name" value="Tom"></property>
+    </bean>
+
+    <bean class="IOC.Bean.Bean.Book" id="book" scope="prototype">
+        <constructor-arg name="name" value="雷霆五鞭"></constructor-arg>
+        <constructor-arg name="author" ><value><![CDATA[<]]></value></constructor-arg>
+    </bean>
+
+    <bean class="IOC.Bean.Bean.Book" id="book1" p:name="闪电五鞭" p:author="混元太极门掌门马保" ></bean>
+
+<!--注入属性外部bean-->
+    <bean class="IOC.dao.UserDaoImpl" id="userDao"></bean>
+
+    <bean class="IOC.service.UserService" id="userService">
+
+<!--注入UserDao对象-->
+<!--    name属性：类里面属性名称-->
+<!--    ref属性：创建userDao对象bean标签的id/name-->
+
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+<!--注入属性内部bean-->
+
+    <bean id="emp" class="IOC.Bean.Bean.Emp">
+        <property name="ename" value="zhangsan"></property>
+        <property name="gender" value="M"></property>
+    </bean>
+
+
+<!--级联属性赋值-->
+    <bean id="emp1" class="IOC.Bean.Bean.Emp">
+        <property name="ename" value="李四"></property>
+        <property name="gender" value="M"></property>
+<!--        <property name="dept" ref="dept"></property>-->
+<!--        <property name="dept.dname" value="质量部"></property>-->
+    </bean>
+
+    <bean class="IOC.Bean.Bean.Dept" id="dept">
+        <property name="dname" value="工艺部"></property>
+    </bean>
+    <bean class="IOC.Bean.Bean.Dept" id="dept2">
+        <property name="dname" value="质量部"></property>
+    </bean>
+<!--注入集合类型属性-->
+    <bean class="IOC.Bean.Bean.Stu" id="stu">
+<!--数组-->
+        <property name="courses">
+            <array>
+                <value>`</value>
+                <value>-</value>
+                <value>*</value>
+            </array>
+        </property>
+<!--LIST-->
+        <property name="list">
+            <list>
+                <value>`</value>
+                <value>-</value>
+                <value>*</value>
+            </list>
+        </property>
+<!--SET-->
+        <property name="set">
+            <set>
+                <value>666</value>
+            </set>
+        </property>
+<!--MAP-->
+        <property name="map">
+            <map>
+                <entry key="a" value="1"></entry>
+                <entry key="b" value="2"></entry>
+            </map>
+        </property>
+<!--集合赋值对象-->
+        <property name="bookList">
+            <list>
+                <ref bean="book"></ref>
+            </list>
+        </property>
+
+    </bean>
+<!--提取公共集合，通过引入名称空间util-->
+
+    <util:list id="UtiLlist">
+            <value>哈利波特</value>
+            <value>论语</value>
+    </util:list>
+
+    <bean class="IOC.Bean.Bean.Book" id="book2">
+        <property name="list" ref="UtiLlist"></property>
+    </bean>
+
+<!--工厂类-->
+    <bean class="IOC.Bean.Bean.MyFactoryBean" id="myFactoryBean"></bean>
+<!--bean的声明周期-->
+    <bean class="IOC.Bean.Bean.Orders" id="orders" init-method="initMethod" destroy-method="destoryMethod" scope="prototype">
+        <property name="oName" value="codeMilk"></property>
+    </bean>
+<!--bean的后置处理器-->
+<!--  <bean class="IOC.Bean.Bean.MyBeanPostProcessor" id="beanPostProcessor"></bean>-->
+
+<!--bean的自动装配autowire：
+                         byName：根据属性名注入
+                         byType：根据实行类型注入            -->
+    <bean class="IOC.Bean.Bean.Emp" id="emp2" autowire="byName"></bean>
+
+<!--引入外部文件-->
+    <context:property-placeholder location="classpath*:db.properties" ></context:property-placeholder>
+<!--连接数据库-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSourceFactory">
+        <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="initialSize" value="${initialSize}"></property>
+        <property name="maxActive" value="${maxActive}"></property>
+        <property name="maxWait" value="${maxWait}"></property>
+        <property name="minIdle" value="${minIdle}"></property>
+        <property name="validationQuery" value="${validationQuery}"></property>
+        <property name="testWhileIdle" value="${testWhileIdle}"></property>
+        <property name="testOnBorrow" value="${testOnBorrow}"></property>
+        <property name="testOnReturn" value="${testOnReturn}"></property>
+    </bean>
+
+</beans>

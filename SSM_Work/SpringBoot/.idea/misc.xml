@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/spring-boot-04-jsp" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/spring-boot-initializer/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-02-initializer/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-configuration-loadocation/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-02-configuration/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring-boot-01-helloworld/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-auotoconfig-principle/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-03-logging/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-04-web/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-04-jsp/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-06-jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-07-mybatis/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

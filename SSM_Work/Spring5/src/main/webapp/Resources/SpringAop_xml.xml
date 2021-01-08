@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/aop
+                            http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+
+
+">
+<!--创建对象-->
+    <bean class="AOP.AOP_xml.Book" id="book"></bean>
+    <bean class="AOP.AOP_xml.BookProxy" id="bookProxy"></bean>
+
+<!--配置Aop增强-->
+    <aop:config>
+<!--        切入点-->
+<!--         表示任何修饰符,返回值的AOP下的AOP_xml的book类的任何方法-->
+        <aop:pointcut id="p" expression="execution(* AOP.AOP_xml.Book.*(..))"/>
+
+        <aop:aspect ref="bookProxy">
+<!--            这里就好理解了，切面就是把通知放到切点的过程-->
+            <aop:before method="before" pointcut-ref="p"></aop:before>
+        </aop:aspect>
+    </aop:config>
+</beans>

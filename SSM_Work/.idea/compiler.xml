@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SSM_Crowdfunding_Webui" />
+        <module name="CrowedFunding_Parent" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="66" target="1.7" />
+      <module name="_66" target="1.7" />
+      <module name="CrowedFunding" target="1.5" />
+      <module name="CrowedFunding_Parent" target="1.7" />
+      <module name="CrowedFunding_WebUi" target="1.7" />
+      <module name="e" target="1.7" />
+      <module name="e1" target="1.7" />
+      <module name="ee1" target="1.7" />
+      <module name="Mybatis" target="1.7" />
+      <module name="MybatisMBG" target="1.7" />
+      <module name="Spring5" target="8" />
+      <module name="SpringMVC" target="1.7" />
+      <module name="SSM_Crowdfunding_Parent" target="1.7" />
+      <module name="SSM_Crowdfunding_Webui" target="1.7" />
+      <module name="SSM_Crowdfunding_webui" target="1.7" />
+      <module name="SSM_CRUD" target="1.7" />
+      <module name="web" target="1.7" />
+      <module name="WEB_Recover" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

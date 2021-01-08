@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CrowedFunding_WebUi/CrowedFunding_WebUi.iml" filepath="$PROJECT_DIR$/CrowedFunding_WebUi/CrowedFunding_WebUi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mybatis/Mybatis.iml" filepath="$PROJECT_DIR$/Mybatis/Mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SSM_CRUD/SSM_CRUD.iml" filepath="$PROJECT_DIR$/SSM_CRUD/SSM_CRUD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SSM_Crowdfunding_Parent/SSM_Crowdfunding_Webui/SSM_Crowdfunding_Webui.iml" filepath="$PROJECT_DIR$/SSM_Crowdfunding_Parent/SSM_Crowdfunding_Webui/SSM_Crowdfunding_Webui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SSM_Work.iml" filepath="$PROJECT_DIR$/.idea/SSM_Work.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Spring5/Spring5.iml" filepath="$PROJECT_DIR$/Spring5/Spring5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringMVC/SpringMVC.iml" filepath="$PROJECT_DIR$/SpringMVC/SpringMVC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/untitled/untitled.iml" filepath="$PROJECT_DIR$/untitled/untitled.iml" />
+    </modules>
+  </component>
+</project>

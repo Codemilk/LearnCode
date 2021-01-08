@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../SSM_Crowdfunding_Parent" />
+    <file type="web" url="file://$PROJECT_DIR$/_66" />
+    <file type="web" url="file://$PROJECT_DIR$/CrowedFunding" />
+    <file type="web" url="file://$PROJECT_DIR$/e" />
+    <file type="web" url="file://$PROJECT_DIR$/e1" />
+    <file type="web" url="file://$PROJECT_DIR$/ee1" />
+    <file type="web" url="file://$PROJECT_DIR$/Mybatis" />
+    <file type="web" url="file://$PROJECT_DIR$/Mybatis/MybatisMBG" />
+    <file type="web" url="file://$PROJECT_DIR$/Spring5" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC" />
+    <file type="web" url="file://$PROJECT_DIR$/SSM_Crowdfunding_Parent" />
+    <file type="web" url="file://$PROJECT_DIR$/SSM_CRUD" />
+    <file type="web" url="file://$PROJECT_DIR$/web" />
+    <file type="web" url="file://$PROJECT_DIR$/Webrecover" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/SSM_CRUD/pom.xml" />
+        <option value="$PROJECT_DIR$/SSM_Crowdfunding_Parent/pom.xml" />
+        <option value="$PROJECT_DIR$/SSM_Study/pom.xml" />
+        <option value="$PROJECT_DIR$/CrowedFunding/pom.xml" />
+        <option value="$PROJECT_DIR$/Mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/e/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringMVC/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$" />
+  </component>
+</project>

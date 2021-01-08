@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+<!--    引入外部文件-->
+    <properties resource="db.properties"></properties>
+
+<!--设置属性Settings-->
+    <settings>
+<!--开启驼峰命名法-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <!--别名处理器，为你的javabean 起别名-->
+    <typeAliases>
+
+<!--表示为一个bean指定别名-->
+<!--        <typeAlias type="Bean.Employee" alias="Emp"></typeAlias>-->
+
+<!--表示指定包名，当前包下的所有类全都默认以首字母小写为别名     -->
+        <package name="Bean" />
+
+ <!--也可以使用注解@alias()设置别名-->
+    </typeAliases>
+
+    <!--插件plugins-->
+<!--    <plugins>-->
+<!--        <plugin interceptor="plugin.MyFirstPlugin">-->
+<!--            &lt;!&ndash;            注册完插件，你还可以传入你的自定义参数吗，传入到Properties，放便后续在你的拦截器plugins方法中使用&ndash;&gt;-->
+<!--            <property name="name" value="root"/>-->
+<!--            <property name="hello" value="hi"/>-->
+<!--        </plugin>-->
+<!--        <plugin interceptor="plugin.MySecondPlugin"></plugin>-->
+<!--        -->
+<!--    </plugins>-->
+<!--pageHelper-->
+    <plugins>
+    <!-- com.github.pagehelper为PageHelper类所在包名 -->
+    <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
+<!--             -->
+        </plugin>
+    </plugins>
+    <environments default="development">
+<!--        environments:环境们，mybatis可以配置多种环境
+               environment：配置一个具体的环境信息，必须有两个标签,id表示当前环境的唯一标识，id的值代表使用哪种环境
+                 transactionManager：事务管理器，了解
+                 dataSource：数据源
+                 -->
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+<!--databaseIdProvider:支持多数据库厂商的；-->
+    <databaseIdProvider type="DB_VENDOR">
+<!--作用就是得到数据库厂商的标识，mybatis就能根据数据库厂商 标识来执行不同的sql-->
+    <property name="MySQL" value="mysql"/>
+<!--        MySQL表示mysql数据库的表示，value表示获取标识后起别名-->
+    </databaseIdProvider>
+    <!--    将我们写好的sql映射文件一定要注册到全局配置文件中-->
+    <mappers>
+           <mapper resource="DepartmentMapper.xml"></mapper>
+           <mapper resource="EmployeeMapper.xml"></mapper>
+
+    </mappers>
+</configuration>

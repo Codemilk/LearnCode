@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+      
+<!--    SpringMVC配置文件-->
+
+<!--扫描所有的文件从、
+    因为只是SpringMVC,所以只扫描 控制器 controller
+    use-default-filters="false" 这个属性表示不再使用原始filter（扫描@component @IOC.service @controller @resporoit）
+-->
+    
+    <context:component-scan base-package="Rest" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+<!--    视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+<!--mvc基本配置-->
+<!--    支持mvc更高级的功能 JSR303 AJAX.....-->
+   <mvc:annotation-driven></mvc:annotation-driven>
+
+<!--将springMVC不可以处理的资源交给tomcat-->
+   <mvc:default-servlet-handler></mvc:default-servlet-handler>
+
+</beans>

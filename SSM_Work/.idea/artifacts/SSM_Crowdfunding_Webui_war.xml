@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SSM_Crowdfunding_Webui:war">
+    <output-path>$PROJECT_DIR$/SSM_Crowdfunding_Parent/SSM_Crowdfunding_Webui/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SSM_Crowdfunding_Webui</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="SSM_Crowdfunding_Webui.war">
+      <element id="artifact" artifact-name="SSM_Crowdfunding_Webui:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Mapper.EmployeeMapperPlus">
+
+<resultMap id="MySimEmp" type="Bean.Employee">
+<!--   id表示主键，可以使用result来表示，但是最好用id 便于观察
+    column表示数据库中表的那一列
+    property表示bean中对应的属性
+-->
+   <id property="id" column="id"></id>
+<!--
+      其他列使用result标签
+-->
+    <result column="last_name" property="lastname"></result>
+    <result column="gender" property="gender"></result>
+    </resultMap>
+
+        <select id="getEmployeeById" resultMap="MySimEmp" >
+            select  * from tbl_employee where id =#{id}
+        </select>
+
+<resultMap id="MyDifEmp" type="Bean.Employee">
+    <id column="id" property="id"></id>
+    <result property="lastname" column="last_name"></result>
+    <result column="email" property="email"></result>
+
+<!--    <result property="d_id.id" column="did"></result>-->
+<!--    <result property="d_id.department" column="dept_name"></result>-->
+
+    <association property="d_id" javaType="Bean.Department">
+<!--        javaType不可以省略，告诉mybatis你要封装的类型-->
+       <id column="did" property="id"></id>
+        <result column="dept_name" property="deptName"></result>
+    </association>
+</resultMap>
+
+        <select id="getEmployeeAndDept" databaseId="mysql" resultMap="MyDifEmp">
+         select e.id,e.last_name ,e.gender,e.email,c.id did,c.dept_name
+         from tbl_employee e,tbl_depart c
+         where e.d_id=c.id
+         and e.id=#{id}
+         </select>
+
+<!--    分布查询-->
+    <resultMap id="MyEmpStep" type="Bean.Employee">
+        <id property="id" column="id"></id>
+        <result column="last_name" property="lastname"></result>
+        <association property="d_id" select="Mapper.DepartmentMapper.getDepartmentById" column="d_id"></association>
+    </resultMap>
+
+    <select id="getEmployeeAndDeptByStep" resultMap="MyEmpStep">
+        select * from tbl_employee where id=#{id}
+    </select>
+<!--延迟加载-->
+<!--    当你使用资源的时候，再去查询
+         要求 需要两个配置：lazyLoadingEnabled:要什么给什么
+                           aggressiveLazyLoading：要一个全都给
+-->
+<!--延迟分布加载-->
+     <select id="getEmployeeByDidStep" resultType="Bean.Employee" >
+         select  * from tbl_employee where  d_id=#{id}
+     </select>
+
+     <resultMap id="MyEmpDisGender" type="Bean.Employee">
+         <id column="id" property="id"></id>
+         <discriminator javaType="string" column="gender">
+             <case value="0">
+                 <result property="email" column="last_name"></result>
+             </case>
+             <case value="1">
+                 <result property="email" column="email"></result>
+             </case>
+         </discriminator>
+     </resultMap>
+
+    <select id="getEmployeeByDidGender" resultMap="MyEmpDisGender">
+        select  * from tbl_employee where id=#{id}
+    </select>
+</mapper>

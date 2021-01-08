@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring-boot-04-jsp" />
+        <module name="springboot-auotoconfig-principle" />
+        <module name="spring-boot-07-mybatis" />
+        <module name="spring-boot-02-automaticconfiguration-principle" />
+        <module name="spring-boot-configuration-loadocation" />
+        <module name="spring-boot-03-logging" />
+        <module name="spring-boot-02-configuration" />
+        <module name="spring-boot-02-initializer" />
+        <module name="spring-boot-04-web" />
+        <module name="spring-boot-02-autoconfig-principle" />
+        <module name="spring-boot-06-jdbc" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Spring-boot-01-helloworld" target="1.8" />
+      <module name="spring-boot-02-autoconfig-principle" target="1.8" />
+      <module name="spring-boot-02-automaticconfiguration-principle" target="1.8" />
+      <module name="spring-boot-02-configuration" target="1.8" />
+      <module name="spring-boot-02-initializer" target="1.8" />
+      <module name="spring-boot-03-logging" target="1.8" />
+      <module name="spring-boot-04-jsp" target="1.8" />
+      <module name="spring-boot-04-web" target="1.8" />
+      <module name="spring-boot-06-jdbc" target="1.8" />
+      <module name="spring-boot-07-mybatis" target="1.8" />
+      <module name="spring-boot-configuration-loadocation" target="1.8" />
+      <module name="springboot-auotoconfig-principle" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Spring-boot-01-helloworld" options="-parameters" />
+      <module name="spring-boot-02-autoconfig-principle" options="-parameters" />
+      <module name="spring-boot-02-automaticconfiguration-principle" options="-parameters" />
+      <module name="spring-boot-02-configuration" options="-parameters" />
+      <module name="spring-boot-02-initializer" options="-parameters" />
+      <module name="spring-boot-03-logging" options="-parameters" />
+      <module name="spring-boot-04-jsp" options="-parameters" />
+      <module name="spring-boot-04-web" options="-parameters" />
+      <module name="spring-boot-06-jdbc" options="-parameters" />
+      <module name="spring-boot-07-mybatis" options="-parameters" />
+      <module name="spring-boot-configuration-loadocation" options="-parameters" />
+      <module name="springboot-auotoconfig-principle" options="-parameters" />
+    </option>
+  </component>
+</project>

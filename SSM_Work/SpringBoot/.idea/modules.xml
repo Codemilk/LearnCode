@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Spring-boot-01-helloworld/spring-boot-02-automaticconfiguration-principle.iml" filepath="$PROJECT_DIR$/Spring-boot-01-helloworld/spring-boot-02-automaticconfiguration-principle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-02-configuration/spring-boot-02-configuration.iml" filepath="$PROJECT_DIR$/spring-boot-02-configuration/spring-boot-02-configuration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-02-initializer/spring-boot-02-initializer.iml" filepath="$PROJECT_DIR$/spring-boot-02-initializer/spring-boot-02-initializer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-03-logging/spring-boot-03-logging.iml" filepath="$PROJECT_DIR$/spring-boot-03-logging/spring-boot-03-logging.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-04-jsp/spring-boot-04-jsp.iml" filepath="$PROJECT_DIR$/spring-boot-04-jsp/spring-boot-04-jsp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-04-web/spring-boot-04-web.iml" filepath="$PROJECT_DIR$/spring-boot-04-web/spring-boot-04-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-06-jdbc/spring-boot-06-jdbc.iml" filepath="$PROJECT_DIR$/spring-boot-06-jdbc/spring-boot-06-jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-07-mybatis/spring-boot-07-mybatis.iml" filepath="$PROJECT_DIR$/spring-boot-07-mybatis/spring-boot-07-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-configuration-loadocation/spring-boot-configuration-loadocation.iml" filepath="$PROJECT_DIR$/spring-boot-configuration-loadocation/spring-boot-configuration-loadocation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-auotoconfig-principle/springboot-auotoconfig-principle.iml" filepath="$PROJECT_DIR$/springboot-auotoconfig-principle/springboot-auotoconfig-principle.iml" />
+    </modules>
+  </component>
+</project>

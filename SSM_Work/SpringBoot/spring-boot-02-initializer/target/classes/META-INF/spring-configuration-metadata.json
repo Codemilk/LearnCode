@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "person",
+      "type": "springbootinitializerquick.springbootinitializer.Bean.Person",
+      "sourceType": "springbootinitializerquick.springbootinitializer.Bean.Person"
+    }
+  ],
+  "properties": [
+    {
+      "name": "person.age",
+      "type": "java.lang.Integer",
+      "sourceType": "springbootinitializerquick.springbootinitializer.Bean.Person"
+    },
+    {
+      "name": "person.last-name",
+      "type": "java.lang.String",
+      "sourceType": "springbootinitializerquick.springbootinitializer.Bean.Person"
+    },
+    {
+      "name": "person.person-message",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "sourceType": "springbootinitializerquick.springbootinitializer.Bean.Person"
+    },
+    {
+      "name": "person.pets",
+      "type": "java.util.List",
+      "sourceType": "springbootinitializerquick.springbootinitializer.Bean.Person"
+    },
+    {
+      "name": "person.propose",
+      "type": "java.lang.Boolean",
+      "sourceType": "springbootinitializerquick.springbootinitializer.Bean.Person"
+    },
+    {
+      "name": "person.son",
+      "type": "springbootinitializerquick.springbootinitializer.Bean.Son",
+      "sourceType": "springbootinitializerquick.springbootinitializer.Bean.Person"
+    }
+  ],
+  "hints": []
+}
