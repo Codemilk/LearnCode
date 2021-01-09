@@ -15,7 +15,7 @@ public class HelloController {
     public String testJsonWithException(@RequestParam("username") String username) {
 
         if(StringUtils.isEmpty(username)){
-            throw new UserNotExistException();
+            throw new UserNotExistException("yonghubucunzai");
         }
 
         return "HelloWorld";

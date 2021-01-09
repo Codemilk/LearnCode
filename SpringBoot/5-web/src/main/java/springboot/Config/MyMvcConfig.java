@@ -25,6 +25,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
 //        registry.addViewController("index.html").setViewName("index");
 //
 //    }
+    
     /**所有的WebMvcConfigurer都会被WebMvcConfigurerComposite中从容器中取出来，然后一起起作用*/
     @Bean
     public WebMvcConfigurer  webMvcConfigurer(){
@@ -43,6 +44,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
 //            public void addInterceptors(InterceptorRegistry registry) {
 //                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/index.html","/login","/webjars/**","/css/**","/img/**");
 //            }
+
         };
     }
 //    我们要添加一个localResolver，让自动配置的localResolver失效
