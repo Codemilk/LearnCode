@@ -1,5 +1,6 @@
 package springboot.Component;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
 
@@ -13,6 +14,7 @@ import java.util.Locale;
  *
  *
  */
+//@Component
 public class MyLocalResolver implements LocaleResolver {
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
