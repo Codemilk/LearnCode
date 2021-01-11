@@ -1,6 +1,6 @@
 package springboot.Config;
 
-import Filters.MyFilter;
+import springboot.Filters.MyFilter;
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -12,7 +12,6 @@ import springboot.Listeners.MyListener;
 import springboot.Servlet.MyServlet;
 
 import javax.servlet.Filter;
-import javax.servlet.ServletRegistration;
 import java.util.Arrays;
 import java.util.EventListener;
 
