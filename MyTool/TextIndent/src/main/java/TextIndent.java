@@ -5,7 +5,8 @@ import java.io.*;
  *
  * @author lenovo
  */
-public class TextIndent {
+public class TextIndent{
+
     /**
      * //父文件
      * //        File FatherFile = new File("TextIndent/src/main/resources/Father.txt");

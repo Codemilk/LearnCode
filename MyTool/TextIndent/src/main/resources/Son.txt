@@ -3,19 +3,24 @@
 When looking to split a large application into parts, 
 often management focuses on the technology layer, leading to UI teams, server-side logic teams, and 
 database teams. When teams are separated along these lines, even simple changes can lead to a cross-
-team project taking time and budgetary approval. A smart team will optimise around this and plump fo
-r the lesser of two evils - just force the logic into whichever application they have access to. Log
-ic everywhere in other words. This is an example of Conway's Law[[5\]](https://martinfowler.com/arti
-cles/microservices.html#footnote-conwayslaw) in action.
+team project taking time and budgetary approval. A smart team will optimise around this and plump for the lesser of two evils -
+just force the logic into whichever application they have access to. Log
+ic everywhere in other words. This is an example of Conway's Law in action.
+Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure.
+
+-- Melvin Conway, 1968
+围绕业务能力组件团队
+当一个大的应用分为几个部分的时候,经常管理层会集中在技术层,导致UI团队,服务端团队,和数据库团队.当这些团队被沿着这些技术线分开,甚至一个小小的改变
+都会导致跨团队工程,花费的时间和预算都不可小视,一个聪明的团队会优化这个问题,两害相权取其轻-就是强制把代码逻辑塞入他们可以访问的应用.换句话说就是逻辑到处都是
+这就是康威定律(任何组织的设计系统(广泛定义)将会生产一个设计的架构,而这个架构与这个组织的交流架构相一致)在起作用的活生生的例子。
 
 Figure 2: Conway's Law in action
 
-The m
-icroservice approach to division is different, splitting up into services organized around **busines
-s capability**. Such services take a broad-stack implementation of software for that business area, 
+The microservice approach to division is different, splitting up into services organized around **business capability**.
+Such services take a broad-stack implementation of software for that business area,
 including user-interface, persistant storage, and any external collaborations. Consequently the team
-s are cross-functional, including the full range of skills required for the development: user-experi
-ence, database, and project management.
+s are cross-functional, including the full range of skills required for the development: user-experience, database, and project management.
+微服务分解的方法是不同的, 围绕业务分为服务.这些服务提供了广泛的软件业务领域实现,包括用户界面,持久存储,和以及任何对外的协作性操作.因此,团队是跨功能的，它拥有软件开发所需的全方位的技能：用户体验、数据库和项目管理。
 
 Figure 3: Service boundaries reinforced by team boundaries
 
